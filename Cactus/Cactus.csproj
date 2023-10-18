@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CactusApplication\CactusApplication.csproj" />
+    <ProjectReference Include="..\CactusDomain\CactusDomain.csproj" />
+  </ItemGroup>
+
 </Project>
