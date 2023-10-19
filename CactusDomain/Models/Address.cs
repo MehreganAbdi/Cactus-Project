@@ -11,6 +11,7 @@ namespace CactusDomain.Models
     {
         [Key]
         public int AddressId { get; set; }
+        public string UserId { get; set; }
         public string FullAddress { get; set; } = "Not Defined";
         public string?  PostalCode { get; set; }
 
