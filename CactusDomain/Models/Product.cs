@@ -13,7 +13,7 @@ namespace CactusDomain.Models
         [Key]
         public int ProductId { get; set; }
         public string ProductName { get; set; }
-        public int SizeCountId { get; set; }
+        public string? SizeCountId { get; set; }
         public int Cost { get; set; }
         public Brand Brand{ get; set; }
         public string? AdditionalInfo { get; set; }
