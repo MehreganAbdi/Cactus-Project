@@ -1,8 +1,8 @@
 ﻿using CactusDomain.Data.Enums;
 
-namespace Cactus.ViewModels
+namespace CactusApplication.DTOs
 {
-    public class ProductVM
+    public class ProductDTO
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
