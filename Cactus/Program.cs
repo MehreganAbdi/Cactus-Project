@@ -1,3 +1,7 @@
+using CactusApplication.IRepository;
+using CactusApplication.IService;
+using CactusApplication.Repository;
+using CactusApplication.Service;
 using CactusDomain.Data;
 using CactusDomain.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -14,7 +18,32 @@ namespace Cactus
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-             
+
+
+
+
+            #region DI
+            
+            //Repositories
+
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+            builder.Services.AddScoped<ISizeCountRepository, SizeCountRepository>();
+            builder.Services.AddScoped<ICartRepository, CartRepository>();
+            builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+
+            //Services
+
+            builder.Services.AddScoped<IProductService, ProductService>();
+
+
+
+
+            #endregion
+
+
+
+
             builder.Services.AddDbContext<ApplicationDbContext>(
                 options =>
                 {
