@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CactusDomain.Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace CactusDomain.Models
         public string ProductName { get; set; }
         public int SizeCountId { get; set; }
         public int Cost { get; set; }
+        public Brand Brand{ get; set; }
         public string? AdditionalInfo { get; set; }
     }
 }

@@ -14,10 +14,7 @@ namespace Cactus
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
-            var app = builder.Build();
-
-
+             
             builder.Services.AddDbContext<ApplicationDbContext>(
                 options =>
                 {
@@ -33,6 +30,8 @@ namespace Cactus
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
+
+            var app = builder.Build();
 
 
 
