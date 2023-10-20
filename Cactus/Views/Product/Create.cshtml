@@ -1,0 +1,62 @@
+﻿@using CactusApplication.DTOs;
+@using CactusDomain.Data.Enums;
+@model ProductDTO
+
+
+@{
+    ViewData["Title"] = "Add Sneaker";
+}
+<center>
+    @if (TempData["Error"] != null)
+    {
+        <div class="col-md-12 alert alert-danger">
+            <span><b>Error Occured!</b> - @TempData["Error"]</span>
+        </div>
+    }
+</center>
+<body>
+    <form method="post" asp-action="Create">
+        <div class="form-group">
+            <label asp-for="ProductName">ProductName</label>
+            <input asp-for="ProductName" type="text" class="form-control" placeholder="Enter ProductName">
+            <span asp-validation-for="ProductName" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="AdditionalInfo">AdditionalInfo</label>
+            <input asp-for="AdditionalInfo" type="text" class="form-control" placeholder="Additional Information">
+            <span asp-validation-for="AdditionalInfo" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="Count">Count</label>
+            <input asp-for="Count" type="number" class="form-control" placeholder="Count">
+            <span asp-validation-for="Count" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="Size">Size</label>
+            <input asp-for="Size" type="text" class="form-control" placeholder="Size">
+            <span asp-validation-for="Size" class="text-danger"></span>
+        </div>
+        <br />
+
+        <div class="form-group">
+            <label asp-for="Cost">Cost</label>
+            <input asp-for="Cost" type="number" class="form-control" placeholder="Cost">
+            <span asp-validation-for="Cost" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="Brand">Brand</label>
+            <select asp-for="Brand" asp-items="@Html.GetEnumSelectList<Brand>()">
+                <option> - - select Brand - - </option>
+            </select>
+        </div><br /><br />
+        
+
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+

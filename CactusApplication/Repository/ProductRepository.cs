@@ -1,4 +1,5 @@
-﻿using CactusApplication.IRepository;
+﻿using CactusApplication.DTOs;
+using CactusApplication.IRepository;
 using CactusDomain.Data;
 using CactusDomain.Data.Enums;
 using CactusDomain.Models;
@@ -20,13 +21,31 @@ namespace CactusApplication.Repository
         }
         public bool Add(Product product)
         {
-            _context.Products.Add(product);
+            var newproduct = new Product()
+            {
+                ProductName = product.ProductName,
+                AdditionalInfo = product.AdditionalInfo,
+                Brand = product.Brand,
+                Cost = product.Cost,
+                Count = product.Count,
+                Size = product.Size
+            };
+            _context.Products.Add(newproduct);
             return Save();
         }
 
         public async Task<bool> AddAsync(Product product)
         {
-            await _context.Products.AddAsync(product);
+            var newproduct = new Product()
+            {
+                ProductName = product.ProductName,
+                AdditionalInfo = product.AdditionalInfo,
+                Brand = product.Brand,
+                Cost = product.Cost,
+                Count = product.Count,
+                Size = product.Size
+            };
+            await _context.Products.AddAsync(newproduct);
             return await SaveAsync();
         }
 

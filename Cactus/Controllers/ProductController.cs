@@ -24,6 +24,18 @@ namespace Cactus.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Detail(int Id)
+        {
+            var productDTO = await productService.GetProductByIdAsync(Id);
+            if (productDTO != null)
+            {
+                return View(productDTO);
+            }
+            TempData["Error"] = "Item Doesn't Exist";
+
+            return RedirectToAction("Index","Product");
+        }
+
         [HttpGet]
         public async Task<IActionResult> Create()
         {
