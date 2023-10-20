@@ -28,7 +28,6 @@ namespace Cactus
 
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IAddressRepository, AddressRepository>();
-            builder.Services.AddScoped<ISizeCountRepository, SizeCountRepository>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
             builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
 

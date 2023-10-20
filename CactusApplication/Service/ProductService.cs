@@ -40,7 +40,9 @@ namespace CactusApplication.Service
                 ProductName = productDTO.ProductName,
                 AdditionalInfo = productDTO.AdditionalInfo,
                 Brand = productDTO.Brand,
-                Cost = productDTO.Cost
+                Cost = productDTO.Cost,
+                Count = productDTO.Count,
+                Size = productDTO.Size
             };
             return product;
         }
@@ -53,6 +55,9 @@ namespace CactusApplication.Service
                 AdditionalInfo = productDTO.AdditionalInfo,
                 Brand = productDTO.Brand,
                 Cost = productDTO.Cost
+                ,
+                Count = productDTO.Count,
+                Size = productDTO.Size
             };
             return  product;
         }
@@ -65,7 +70,9 @@ namespace CactusApplication.Service
                 AdditionalInfo = product.AdditionalInfo,
                 Brand = product.Brand,
                 Cost= product.Cost,
-                ProductName= product.ProductName
+                ProductName= product.ProductName,
+                Count = product.Count,
+                Size = product.Size
             };
             return productDTO;  
         }
@@ -78,7 +85,9 @@ namespace CactusApplication.Service
                 AdditionalInfo = product.AdditionalInfo,
                 Brand = product.Brand,
                 Cost = product.Cost,
-                ProductName = product.ProductName
+                ProductName = product.ProductName,
+                Count = product.Count,
+                Size = product.Size
             };
             return productDTO;
         }
@@ -126,7 +135,9 @@ namespace CactusApplication.Service
                 AdditionalInfo = productDTO.AdditionalInfo,
                 Brand = productDTO.Brand,
                 Cost = productDTO.Cost,
-                ProductName = productDTO.ProductName
+                ProductName = productDTO.ProductName,
+                Count = productDTO.Count,
+                Size = productDTO.Size
             };
             productRepository.Remove(product);
             return Save();
@@ -140,7 +151,9 @@ namespace CactusApplication.Service
                 AdditionalInfo = productDTO.AdditionalInfo,
                 Brand = productDTO.Brand,
                 Cost = productDTO.Cost,
-                ProductName = productDTO.ProductName
+                ProductName = productDTO.ProductName,
+                Count = productDTO.Count,
+                Size = productDTO.Size
             };
             await productRepository.RemoveAsync(product);
             return await SaveAsync();
@@ -164,7 +177,9 @@ namespace CactusApplication.Service
                 AdditionalInfo = productDTO.AdditionalInfo,
                 Brand = productDTO.Brand,
                 Cost = productDTO.Cost,
-                ProductName = productDTO.ProductName
+                ProductName = productDTO.ProductName,
+                Count = productDTO.Count,
+                Size = productDTO.Size
             };
             await productRepository.UpdateAsync(porduct);
             return await SaveAsync();
