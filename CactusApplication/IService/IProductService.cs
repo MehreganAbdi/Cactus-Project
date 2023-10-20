@@ -24,5 +24,7 @@ namespace CactusApplication.IService
         Task<Product> ChangeToProductAsync(ProductDTO productDTO);
         ProductDTO ChangeToProductDTO(Product product);
         Task<ProductDTO> ChangeToProductDTOAsync(Product product);
+        ProductDTO GetProductById(int Id);
+        Task<ProductDTO> GetProductByIdAsync(int Id);
     }
 }

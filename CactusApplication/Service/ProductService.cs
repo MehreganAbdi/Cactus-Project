@@ -105,6 +105,19 @@ namespace CactusApplication.Service
             return productDTOs;
         }
 
+        public ProductDTO GetProductById(int Id)
+        {
+            var product = productRepository.GetProductById(Id);
+            return ChangeToProductDTO(product);
+        }
+
+        public async Task<ProductDTO> GetProductByIdAsync(int Id)
+        {
+            var product =await productRepository.GetProductByIdAsync(Id);
+            return await ChangeToProductDTOAsync(product);
+
+        }
+
         public bool RemoveProduct(ProductDTO productDTO)
         {
             var product = new Product()
