@@ -31,12 +31,16 @@ namespace Cactus
             builder.Services.AddScoped<IAddressRepository, AddressRepository>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
             builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+            builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+
 
 
             //Services
 
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
+
 
 
             #endregion
