@@ -1,5 +1,5 @@
 ﻿using CactusApplication.DTOs;
-using CactusApplication.IRepository;
+using CactusDomain.IRepository;
 using CactusApplication.IService;
 using CactusDomain.Models;
 using System;

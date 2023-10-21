@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CactusApplication.IRepository
+namespace CactusDomain.IRepository
 {
     public interface ICartRepository
     {

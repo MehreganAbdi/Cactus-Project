@@ -1,4 +1,4 @@
-using CactusApplication.IRepository;
+using CactusDomain.IRepository;
 using CactusApplication.IService;
 using CactusApplication.Repository;
 using CactusApplication.Service;
