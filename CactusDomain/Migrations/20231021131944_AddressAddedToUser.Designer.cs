@@ -4,6 +4,7 @@ using CactusDomain.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CactusDomain.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231021131944_AddressAddedToUser")]
+    partial class AddressAddedToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,6 +38,10 @@ namespace CactusDomain.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AddressId");
@@ -84,6 +91,9 @@ namespace CactusDomain.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AddressId1")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -138,7 +148,7 @@ namespace CactusDomain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("AddressId1");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -328,7 +338,7 @@ namespace CactusDomain.Migrations
                 {
                     b.HasOne("CactusDomain.Models.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId")
+                        .HasForeignKey("AddressId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
