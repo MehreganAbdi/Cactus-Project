@@ -12,7 +12,7 @@ namespace Cactus
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -68,7 +68,10 @@ namespace Cactus
 
             var app = builder.Build();
 
-
+            if (args.Length == 1 && args[0].ToLower() == "seeddata")
+            {
+                await SeedData.SeedUsersAndRolesAsync(app);
+            }
 
 
             // Configure the HTTP request pipeline.
