@@ -12,7 +12,7 @@ namespace CactusApplication.IService
         Task<bool> LoginAsync(LoginDTO loginDTO);
         Task<bool> LogoutAsync();
         Task<bool> RegisterAsync(RegisterDTO registerDTO);
-        Task<EmailVerificationDTO> EmailRegistrationAsyncGet(EmailDTO emailDTO, string UserId);
-        Task<bool> EmailRegistrationAsyncPost(EmailDTO emailDTO, string UserId);
+        Task<EmailVerificationDTO> EmailRegistrationAsyncGet(string UserId);
+        Task<bool> EmailRegistrationAsyncPost(EmailVerificationDTO emailDTO, string UserId);
     }
 }

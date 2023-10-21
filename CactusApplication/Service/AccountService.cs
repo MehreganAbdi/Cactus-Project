@@ -26,7 +26,7 @@ namespace CactusApplication.Service
             _accountRepository = accountRepository;
         }
 
-        public async Task<EmailVerificationDTO> EmailRegistrationAsyncGet(EmailDTO emailDTO , string UserId)
+        public async Task<EmailVerificationDTO> EmailRegistrationAsyncGet(string UserId)
         {
             await _emailService.SendRegistrationCodeByEmail(UserId);
             var emailVerificationDTO = new EmailVerificationDTO()
@@ -42,7 +42,7 @@ namespace CactusApplication.Service
         {
             var user = await _accountRepository.GetUserByEmailAsync(emailVerificationDTO.UserId);
 
-            if (emailVerificationDTO.Code == null || emailVerificationDTO.Code.Length < 4 || emailVerificationDTO.Code.Length > 4 || Convert.ToInt32(emailVerificationDTO.Code) != user.PassToken)
+            if (emailVerificationDTO.Code == null || emailVerificationDTO.Code.Length < 4 || emailVerificationDTO.Code.Length > 4 || Convert.ToInt32(emailVerificationDTO.Code) != user.RCode)
             {
                 return false;
             }
