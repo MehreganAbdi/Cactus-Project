@@ -129,32 +129,15 @@ namespace CactusApplication.Service
 
         public bool RemoveProduct(ProductDTO productDTO)
         {
-            var product = new Product()
-            {
-                ProductId = productDTO.ProductId,
-                AdditionalInfo = productDTO.AdditionalInfo,
-                Brand = productDTO.Brand,
-                Cost = productDTO.Cost,
-                ProductName = productDTO.ProductName,
-                Count = productDTO.Count,
-                Size = productDTO.Size
-            };
+            var product =  productRepository.GetProductById(productDTO.ProductId);
+
             productRepository.Remove(product);
             return Save();
         }
 
         public async Task<bool> RemoveProductAsync(ProductDTO productDTO)
         {
-            var product = new Product()
-            {
-                ProductId = productDTO.ProductId,
-                AdditionalInfo = productDTO.AdditionalInfo,
-                Brand = productDTO.Brand,
-                Cost = productDTO.Cost,
-                ProductName = productDTO.ProductName,
-                Count = productDTO.Count,
-                Size = productDTO.Size
-            };
+            var product = await productRepository.GetProductByIdAsync(productDTO.ProductId);
             await productRepository.RemoveAsync(product);
             return await SaveAsync();
         }

@@ -21,7 +21,7 @@ namespace Cactus.Controllers
                 TempData["Error"] = "No Products Yet!";
             }
 
-            return View();
+            return View(productDTOs);
         }
 
         public async Task<IActionResult> Detail(int Id)
@@ -33,7 +33,7 @@ namespace Cactus.Controllers
             }
             TempData["Error"] = "Item Doesn't Exist";
 
-            return RedirectToAction("Index","Product");
+            return RedirectToAction("Index", "Product");
         }
 
         [HttpGet]
@@ -45,12 +45,12 @@ namespace Cactus.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProductDTO productDTO)
         {
-            var addingResult = await productService.AddProductAsync(productDTO);
-            if (!addingResult)
+            if (!ModelState.IsValid)
             {
                 TempData["Error"] = "Adding Failed , Try Again";
                 return View(productDTO);
             }
+            await productService.AddProductAsync(productDTO);
             return RedirectToAction("Index", "Product");
         }
 
@@ -58,7 +58,7 @@ namespace Cactus.Controllers
         public async Task<IActionResult> Edit(int Id)
         {
             var productDTO = await productService.GetProductByIdAsync(Id);
-            if (productDTO!= null)
+            if (productDTO != null)
             {
                 return View(productDTO);
             }
@@ -68,24 +68,26 @@ namespace Cactus.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(ProductDTO productDTO)
         {
-            var result = await productService.UpdateProduct(productDTO);
-            if (result)
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index","Product");
+                TempData["Error"] = "Procccess Failed , Try Again";
+                return View(productDTO);
             }
-            TempData["Error"] = "Procccess Failed , Try Again";
-            return View(productDTO);
+            await productService.UpdateProduct(productDTO);
+            return RedirectToAction("Index", "Product");
         }
-        
+
         public async Task<IActionResult> Delete(int Id)
         {
-            var result = await productService.RemoveProductAsync(await productService.GetProductByIdAsync(Id));
-            if (result)
+            var product = await productService.GetProductByIdAsync(Id);
+            if (product == null)
             {
-                return RedirectToAction("Index", "Product");
+                TempData["Error"] = "Item Doesn't Exist";
             }
-            TempData["Error"] = "Item Doesn't Exist , Try Again";
+            await productService.RemoveProductAsync(product);
+
             return RedirectToAction("Index", "Product");
+
         }
 
 

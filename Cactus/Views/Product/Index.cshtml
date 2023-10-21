@@ -15,12 +15,13 @@
             <span><b>Error Occured!</b> - @TempData["Error"]</span>
         </div>
     }
-    <br />
-    <br />
+    else
+    {
 
-    <div class="row">
-        @if (Model != null)
-        {
+        <br />
+        <br />
+
+        <div class="row">
 
             @foreach (var item in Model)
             {
@@ -57,6 +58,7 @@
                 </div>
 
             }
-        }
-    </div>
+
+        </div>
+    }
 </div>
