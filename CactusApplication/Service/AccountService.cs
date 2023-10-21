@@ -28,7 +28,9 @@ namespace CactusApplication.Service
 
         public async Task<EmailVerificationDTO> EmailRegistrationAsyncGet(string UserId)
         {
-            await _emailService.SendRegistrationCodeByEmail(UserId);
+            var user = await _accountRepository.GetUserByIdAsync(UserId);
+             await _emailService.SendRegistrationCodeByEmail(user.Email);
+            
             var emailVerificationDTO = new EmailVerificationDTO()
             {
                 UserId = UserId,
@@ -79,7 +81,10 @@ namespace CactusApplication.Service
         public async Task<bool> RegisterAsync(RegisterDTO registerDTO)
         {
             var user = await _userManager.FindByEmailAsync(registerDTO.EmailAddress);
-            
+            if (user != null)
+            {
+                return false;
+            }
             var newUser = new User()
             {
                 Email = registerDTO.EmailAddress
