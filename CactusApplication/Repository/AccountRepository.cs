@@ -41,5 +41,10 @@ namespace CactusApplication.Repository
             return await context.Users.FirstOrDefaultAsync(u => u.Id == UserId);
 
         }
+
+        public async Task<bool> SaveAsync()
+        {
+            return await context.SaveChangesAsync() > 0;
+        }
     }
 }

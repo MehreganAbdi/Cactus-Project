@@ -9,12 +9,10 @@ namespace CactusApplication.IService
 {
     public interface IAccountService
     {
-        bool Login(LoginDTO loginDTO);
         Task<bool> LoginAsync(LoginDTO loginDTO);
-        bool Logout();
         Task<bool> LogoutAsync();
-        bool Register(RegisterDTO registerDTO);
         Task<bool> RegisterAsync(RegisterDTO registerDTO);
-
+        Task<EmailVerificationDTO> EmailRegistrationAsyncGet(EmailDTO emailDTO, string UserId);
+        Task<bool> EmailRegistrationAsyncPost(EmailDTO emailDTO, string UserId);
     }
 }

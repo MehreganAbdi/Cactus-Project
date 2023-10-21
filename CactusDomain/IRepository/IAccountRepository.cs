@@ -13,5 +13,6 @@ namespace CactusDomain.IRepository
         Task<User> GetUserByEmailAsync(string Email);
         User GetUserById(string UserId);
         Task<User> GetUserByIdAsync(string UserId);
+        Task<bool> SaveAsync();
     }
 }
