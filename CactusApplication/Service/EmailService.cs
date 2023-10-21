@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using CactusDomain.Data;
 using Microsoft.EntityFrameworkCore;
+using CactusApplication.IService;
 
 namespace CactusApplication.Service
 {
-    public class EmailService
+    public class EmailService : IEmailService
     {
         private readonly ApplicationDbContext _context;
         public EmailService(ApplicationDbContext context)

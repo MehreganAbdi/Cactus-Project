@@ -24,6 +24,7 @@ namespace Cactus
 
             #region DI
             
+
             //Repositories
 
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -31,14 +32,16 @@ namespace Cactus
             builder.Services.AddScoped<ICartRepository, CartRepository>();
             builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
 
+
             //Services
 
             builder.Services.AddScoped<IProductService, ProductService>();
-
-
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
 
             #endregion
+
+
 
 
 
