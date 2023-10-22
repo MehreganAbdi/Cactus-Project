@@ -1,0 +1,49 @@
+﻿@using CactusApplication.DTOs;
+@model EmailVerificationDTO
+@{
+    ViewData["Title"] = "Email Verification";
+}
+
+
+<div class="content" data-simplebar>
+    <div class="section mt-0">
+        <h1 class="title title--h1 title__separate">Email Verification</h1>
+    </div>
+    <br />
+    <br />
+
+
+
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <p>
+                <h5>We've Send You The Verification Code </h5>
+            </p>
+            @if (TempData["Error"] != null)
+            {
+                <div class="col-md-12 alert alert-danger">
+                    <span><b>Sorry!</b> - @TempData["Error"]</span>
+                </div>
+            }
+            <form asp-action="EmailVerification">
+                <div class="row">
+
+                    <input type="hidden" value="@Model.UserId" name="UserId" />
+                    <div class="form-group col-12 col-md-6">
+                        <i class="font-icon icon-at"></i>
+                        <label asp-for="Code" class="control-label">Code</label>
+                        <input class="input input__icon form-control" style="width:100px;" asp-for="Code" type="text" class="form-control" >
+                        <span asp-validation-for="Code" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        <input class="btn btn-outline-success float right" type="submit" value="Validation" />
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
