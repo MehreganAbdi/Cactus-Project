@@ -29,6 +29,16 @@ namespace CactusApplication.Repository
             return SaveAsync();
         }
 
+        public bool Exists(UserFavorite favorite)
+        {
+            return _context.UserFavorites.Any(f => f.ProductId == favorite.ProductId && f.UserId == favorite.UserId);
+        }
+
+        public async Task<bool> ExistsAsync(UserFavorite favorite)
+        {
+            return await _context.UserFavorites.AnyAsync(f => f.ProductId == favorite.ProductId && f.UserId == favorite.UserId);
+        }
+
         public IEnumerable<UserFavorite> GetAllByUserId(string UserId)
         {
             return _context.UserFavorites.Where(f => f.UserId == UserId).ToList();
@@ -45,9 +55,31 @@ namespace CactusApplication.Repository
             return Save();
         }
 
+        public bool Remove(int ProductId, string UserId)
+        {
+            var uf = _context.UserFavorites.Where(e => e.UserId == UserId && e.ProductId == ProductId).FirstOrDefault();
+            if (uf == null)
+            {
+                return true;
+            }
+            Remove(uf);
+            return Save();
+        }
+
         public async Task<bool> RemoveAsync(UserFavorite favorite)
         {
             _context.UserFavorites.Remove(favorite);
+            return await SaveAsync();
+        }
+
+        public async Task<bool> RemoveAsync(int ProductId, string UserId)
+        {
+            var uf = await _context.UserFavorites.Where(e => e.UserId == UserId && e.ProductId == ProductId).FirstOrDefaultAsync();
+            if (uf == null)
+            {
+                return true;
+            }
+            await RemoveAsync(uf);
             return await SaveAsync();
         }
 

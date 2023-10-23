@@ -10,22 +10,30 @@ using System.Threading.Tasks;
 
 namespace CactusApplication.Service
 {
-    public class UserFavoriteService : IUserFavotireService
+    public class UserFavoriteService : IUserFavoriteService
     {
-        private readonly IFavoriteRepository favoriteRepository;
+        private readonly CactusDomain.IRepository.IFavoriteRepository favoriteRepository;
 
-        public UserFavoriteService(IFavoriteRepository favoriteRepository)
+        public UserFavoriteService(CactusDomain.IRepository.IFavoriteRepository favoriteRepository)
         {
             this.favoriteRepository = favoriteRepository;
         }
-        public bool AddToFavorite(UserFavoriteDTO userFavoriteDTO)
+        public  bool AddToFavorite(UserFavoriteDTO userFavoriteDTO)
         {
-            return favoriteRepository.AddToFavorite(ChangeDTOtoModel(userFavoriteDTO));
+            if (!favoriteRepository.Exists(ChangeDTOtoModel(userFavoriteDTO)))
+            {
+                return favoriteRepository.AddToFavorite(ChangeDTOtoModel(userFavoriteDTO));
+            }
+            return false;
         }
 
         public async Task<bool> AddToFavoriteAsync(UserFavoriteDTO userFavoriteDTO)
         {
-            return await favoriteRepository.AddToFavoriteAsync(await ChangeDTOtoModelAsync(userFavoriteDTO));
+            if (!await favoriteRepository.ExistsAsync(await ChangeDTOtoModelAsync(userFavoriteDTO)))
+            {
+                return await favoriteRepository.AddToFavoriteAsync(await ChangeDTOtoModelAsync(userFavoriteDTO));
+            }
+            return false;
         }
 
         public UserFavorite ChangeDTOtoModel(UserFavoriteDTO userFavoriteDTO)
@@ -51,25 +59,25 @@ namespace CactusApplication.Service
 
         }
 
-       
+
         public IEnumerable<UserFavoriteDTO> GetAllUserFavorites(string UserId)
         {
             var allByUser = favoriteRepository.GetAllByUserId(UserId);
             var allByUserDTO = new List<UserFavoriteDTO>();
-            if(allByUser != null)
+            if (allByUser != null)
             {
                 foreach (var item in allByUser)
                 {
                     allByUserDTO.Add(ChangeToDTO(item));
                 }
-                return allByUserDTO;            
+                return allByUserDTO;
             }
             return null;
         }
 
         public async Task<IEnumerable<UserFavoriteDTO>> GetAllUserFavoritesAsync(string UserId)
         {
-            var allByUser =await favoriteRepository.GetAllByUserIdAsync(UserId);
+            var allByUser = await favoriteRepository.GetAllByUserIdAsync(UserId);
             var allByUserDTO = new List<UserFavoriteDTO>();
             if (allByUser != null)
             {
@@ -77,20 +85,21 @@ namespace CactusApplication.Service
                 {
                     allByUserDTO.Add(await ChangeToDTOAsync(item));
                 }
-                return  allByUserDTO;
+                return allByUserDTO;
             }
             return null;
 
         }
 
-        public bool RemoveFromFavorites(UserFavoriteDTO userFavoriteDTO)
+        public bool RemoveFromFavorites(int ProductId, string UserId)
         {
-            return favoriteRepository.Remove(ChangeDTOtoModel(userFavoriteDTO));
+            return favoriteRepository.Remove(ProductId, UserId);
         }
 
-        public async Task<bool> RemoveFromFavoritesAsync(UserFavoriteDTO userFavoriteDTO)
+        public async Task<bool> RemoveFromFavoritesAsync(int ProductId, string UserId)
         {
-            return await favoriteRepository.RemoveAsync(await ChangeDTOtoModelAsync(userFavoriteDTO));
+            return await favoriteRepository.RemoveAsync(ProductId, UserId);
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CactusApplication.DTOs;
 using CactusApplication.IService;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cactus.Controllers
@@ -7,10 +8,12 @@ namespace Cactus.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService productService;
+        private readonly IUserFavoriteService userFavotireService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IUserFavoriteService userFavotireService)
         {
             this.productService = productService;
+            this.userFavotireService = userFavotireService;
         }
 
         public async Task<IActionResult> Index()
@@ -27,8 +30,18 @@ namespace Cactus.Controllers
         public async Task<IActionResult> Detail(int Id)
         {
             var productDTO = await productService.GetProductByIdAsync(Id);
+
             if (productDTO != null)
             {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    productDTO.IsInUserFavs = false;
+                }
+                else
+                {
+
+                    productDTO.IsInUserFavs = await productService.IsInUserFavorites(Id, User.Identity.GetUserId());
+                }
                 return View(productDTO);
             }
             TempData["Error"] = "Item Doesn't Exist";

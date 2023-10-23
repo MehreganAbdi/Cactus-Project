@@ -9,14 +9,14 @@ using System.Threading.Tasks.Dataflow;
 
 namespace CactusApplication.IService
 {
-    public interface IUserFavotireService
+    public interface IUserFavoriteService
     {
         IEnumerable<UserFavoriteDTO> GetAllUserFavorites(string UserId);
         Task<IEnumerable<UserFavoriteDTO>> GetAllUserFavoritesAsync(string UserId);
         bool AddToFavorite(UserFavoriteDTO userFavoriteDTO);
         Task<bool> AddToFavoriteAsync(UserFavoriteDTO userFavoriteDTO);
-        bool RemoveFromFavorites(UserFavoriteDTO userFavoriteDTO);
-        Task<bool> RemoveFromFavoritesAsync(UserFavoriteDTO userFavoriteDTO);
+        bool RemoveFromFavorites(int ProductId, string UserId);
+        Task<bool> RemoveFromFavoritesAsync(int ProductId , string UserId);
         UserFavoriteDTO ChangeToDTO(UserFavorite userFavorite);
         Task<UserFavoriteDTO> ChangeToDTOAsync(UserFavorite userFavorite);
         UserFavorite ChangeDTOtoModel(UserFavoriteDTO userFavoriteDTO);
