@@ -1,5 +1,5 @@
 ﻿@using CactusApplication.DTOs;
-@model ProductDTO
+@model ProductDetailDTO
 @{
     ViewData["Error"] = "Sneaker Detail";
 }
@@ -16,7 +16,7 @@
 
                 @Model.AdditionalInfo
                 <br />
-                @if ((bool)Model.IsInUserFavs)
+                @if ((bool)Model.IsInFavorites)
                 {
                     <a asp-action="RemoveFromFavorites" asp-controller="UserAction" asp-route-id="@Model.ProductId" class="btn btn-secondary">
                         Unlike 

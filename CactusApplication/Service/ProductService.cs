@@ -75,8 +75,7 @@ namespace CactusApplication.Service
                 Cost= product.Cost,
                 ProductName= product.ProductName,
                 Count = product.Count,
-                Size = product.Size,
-                IsInUserFavs = false
+                Size = product.Size
             };
             return productDTO;  
         }
@@ -91,8 +90,7 @@ namespace CactusApplication.Service
                 Cost = product.Cost,
                 ProductName = product.ProductName,
                 Count = product.Count,
-                Size = product.Size,
-                IsInUserFavs = false
+                Size = product.Size
             };
             return productDTO;
         }
