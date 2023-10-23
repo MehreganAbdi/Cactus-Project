@@ -18,15 +18,13 @@
                 <br />
                 @if ((bool)Model.IsInFavorites)
                 {
-                    <a asp-action="RemoveFromFavorites" asp-controller="UserAction" asp-route-id="@Model.ProductId" class="btn btn-secondary">
-                        Unlike 
-                    </a>
+                    <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="UserAction" asp-action="RemoveFromFavorites" asp-route-id="@Model.ProductId">Unlike</a>
+
                 }
                 else
                 {
-                    <a asp-action="AddToFavorites" asp-controller="UserAction" asp-route-id="@Model.ProductId" class="btn btn-primary">
-                        like
-                    </a>
+                    <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="UserAction" asp-action="AddToFavorites" asp-route-id="@Model.ProductId">Like</a>
+
                 }
               
             </p>
