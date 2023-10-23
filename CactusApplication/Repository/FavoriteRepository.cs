@@ -29,6 +29,16 @@ namespace CactusApplication.Repository
             return SaveAsync();
         }
 
+        public bool Exists(UserFavorite favorite)
+        {
+            return _context.UserFavorites.Any(f => f.ProductId == favorite.ProductId && f.UserId == favorite.UserId);
+        }
+
+        public async Task<bool> ExistsAsync(UserFavorite favorite)
+        {
+            return await _context.UserFavorites.AnyAsync(f => f.ProductId == favorite.ProductId && f.UserId == favorite.UserId);
+        }
+
         public IEnumerable<UserFavorite> GetAllByUserId(string UserId)
         {
             return _context.UserFavorites.Where(f => f.UserId == UserId).ToList();

@@ -18,14 +18,22 @@ namespace CactusApplication.Service
         {
             this.favoriteRepository = favoriteRepository;
         }
-        public bool AddToFavorite(UserFavoriteDTO userFavoriteDTO)
+        public  bool AddToFavorite(UserFavoriteDTO userFavoriteDTO)
         {
-            return favoriteRepository.AddToFavorite(ChangeDTOtoModel(userFavoriteDTO));
+            if (!favoriteRepository.Exists(ChangeDTOtoModel(userFavoriteDTO)))
+            {
+                return favoriteRepository.AddToFavorite(ChangeDTOtoModel(userFavoriteDTO));
+            }
+            return false;
         }
 
         public async Task<bool> AddToFavoriteAsync(UserFavoriteDTO userFavoriteDTO)
         {
-            return await favoriteRepository.AddToFavoriteAsync(await ChangeDTOtoModelAsync(userFavoriteDTO));
+            if (!await favoriteRepository.ExistsAsync(await ChangeDTOtoModelAsync(userFavoriteDTO)))
+            {
+                return await favoriteRepository.AddToFavoriteAsync(await ChangeDTOtoModelAsync(userFavoriteDTO));
+            }
+            return false;
         }
 
         public UserFavorite ChangeDTOtoModel(UserFavoriteDTO userFavoriteDTO)
@@ -51,25 +59,25 @@ namespace CactusApplication.Service
 
         }
 
-       
+
         public IEnumerable<UserFavoriteDTO> GetAllUserFavorites(string UserId)
         {
             var allByUser = favoriteRepository.GetAllByUserId(UserId);
             var allByUserDTO = new List<UserFavoriteDTO>();
-            if(allByUser != null)
+            if (allByUser != null)
             {
                 foreach (var item in allByUser)
                 {
                     allByUserDTO.Add(ChangeToDTO(item));
                 }
-                return allByUserDTO;            
+                return allByUserDTO;
             }
             return null;
         }
 
         public async Task<IEnumerable<UserFavoriteDTO>> GetAllUserFavoritesAsync(string UserId)
         {
-            var allByUser =await favoriteRepository.GetAllByUserIdAsync(UserId);
+            var allByUser = await favoriteRepository.GetAllByUserIdAsync(UserId);
             var allByUserDTO = new List<UserFavoriteDTO>();
             if (allByUser != null)
             {
@@ -77,7 +85,7 @@ namespace CactusApplication.Service
                 {
                     allByUserDTO.Add(await ChangeToDTOAsync(item));
                 }
-                return  allByUserDTO;
+                return allByUserDTO;
             }
             return null;
 

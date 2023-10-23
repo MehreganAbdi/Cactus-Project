@@ -15,6 +15,8 @@ namespace CactusDomain.IRepository
         Task<bool> AddToFavoriteAsync(UserFavorite favorite);
         bool Remove(UserFavorite favorite);
         Task<bool> RemoveAsync(UserFavorite favorite);
+        Task<bool> ExistsAsync(UserFavorite favorite);
+        bool Exists(UserFavorite favorite);
         bool Save();
         Task<bool> SaveAsync();
     }
