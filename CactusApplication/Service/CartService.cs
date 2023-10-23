@@ -20,17 +20,33 @@ namespace CactusApplication.Service
         }
         public bool AddToCart(CartDTO item)
         {
-            throw new NotImplementedException();
+            return cartRepository.AddToCart(ChangeToModel(item));
         }
 
-        public Task<bool> AddToCartAsync(CartDTO item)
+        public async Task<bool> AddToCartAsync(CartDTO item)
         {
-            throw new NotImplementedException();
+            return await cartRepository.AddToCartAsync(await  ChangeToModelAsync(item));
         }
 
         public CartDTO ChangeToDTO(UserCart userCart)
         {
-            throw new NotImplementedException();
+            var product = cartRepository.GetProductById(userCart.ProductId);
+            var productDetailDTO = new ProductDetailDTO()
+            {
+                AdditionalInfo = product.AdditionalInfo,
+                Brand = product.Brand,
+                Cost = product.Count,
+                Size = product.Size,
+                Count = product.Count,
+                ProductId = userCart.ProductId,
+                ProductName = product.ProductName,
+                IsInFavorites = 
+            };
+            return new CartDTO()
+            {
+                Product = 
+
+            };
         }
 
         public Task<CartDTO> ChangeToDTOAsync(UserCart userCart)
