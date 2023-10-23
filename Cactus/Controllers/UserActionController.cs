@@ -29,19 +29,15 @@ namespace Cactus.Controllers
             {
                 TempData["Error"] = "This Item Is Already In Your Favorites";
             }
-            return RedirectToAction("Detail", "Products", Id);
+            return RedirectToAction("Detail", "Product", Id);
 
         }
 
         public async Task<IActionResult> RemoveFromFavorites(int Id)
         {
-            var fav = new UserFavoriteDTO()
-            {
-                ProductId = Id,
-                UserId = User.Identity.GetUserId()
-            };
-            await userFavotireService.RemoveFromFavoritesAsync(fav);
-            return RedirectToAction("Detail", "Products", Id);
+          
+            await userFavotireService.RemoveFromFavoritesAsync(Id,User.Identity.GetUserId());
+            return RedirectToAction("Detail", "Product", Id);
         }
 
 

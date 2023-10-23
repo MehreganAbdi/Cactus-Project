@@ -91,14 +91,15 @@ namespace CactusApplication.Service
 
         }
 
-        public bool RemoveFromFavorites(UserFavoriteDTO userFavoriteDTO)
+        public bool RemoveFromFavorites(int ProductId, string UserId)
         {
-            return favoriteRepository.Remove(ChangeDTOtoModel(userFavoriteDTO));
+            return favoriteRepository.Remove(ProductId, UserId);
         }
 
-        public async Task<bool> RemoveFromFavoritesAsync(UserFavoriteDTO userFavoriteDTO)
+        public async Task<bool> RemoveFromFavoritesAsync(int ProductId, string UserId)
         {
-            return await favoriteRepository.RemoveAsync(await ChangeDTOtoModelAsync(userFavoriteDTO));
+            return await favoriteRepository.RemoveAsync(ProductId, UserId);
+
         }
     }
 }

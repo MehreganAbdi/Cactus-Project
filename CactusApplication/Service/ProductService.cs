@@ -14,9 +14,9 @@ namespace CactusApplication.Service
     public class ProductService : IProductService
     {
         private readonly IProductRepository productRepository;
-        private readonly CactusDomain.IRepository.IFavoriteRepository userFavotireRepository;
+        private readonly IFavoriteRepository userFavotireRepository;
 
-        public ProductService(IProductRepository productRepository, CactusDomain.IRepository.IFavoriteRepository userFavotireRepository)
+        public ProductService(IProductRepository productRepository, IFavoriteRepository userFavotireRepository)
         {
             this.productRepository = productRepository;
             this.userFavotireRepository = userFavotireRepository;
@@ -75,7 +75,8 @@ namespace CactusApplication.Service
                 Cost= product.Cost,
                 ProductName= product.ProductName,
                 Count = product.Count,
-                Size = product.Size
+                Size = product.Size,
+                IsInUserFavs = false
             };
             return productDTO;  
         }
@@ -90,7 +91,8 @@ namespace CactusApplication.Service
                 Cost = product.Cost,
                 ProductName = product.ProductName,
                 Count = product.Count,
-                Size = product.Size
+                Size = product.Size,
+                IsInUserFavs = false
             };
             return productDTO;
         }

@@ -55,9 +55,31 @@ namespace CactusApplication.Repository
             return Save();
         }
 
+        public bool Remove(int ProductId, string UserId)
+        {
+            var uf = _context.UserFavorites.Where(e => e.UserId == UserId && e.ProductId == ProductId).FirstOrDefault();
+            if (uf == null)
+            {
+                return true;
+            }
+            Remove(uf);
+            return Save();
+        }
+
         public async Task<bool> RemoveAsync(UserFavorite favorite)
         {
             _context.UserFavorites.Remove(favorite);
+            return await SaveAsync();
+        }
+
+        public async Task<bool> RemoveAsync(int ProductId, string UserId)
+        {
+            var uf = await _context.UserFavorites.Where(e => e.UserId == UserId && e.ProductId == ProductId).FirstOrDefaultAsync();
+            if (uf == null)
+            {
+                return true;
+            }
+            await RemoveAsync(uf);
             return await SaveAsync();
         }
 

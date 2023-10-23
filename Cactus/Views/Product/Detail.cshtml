@@ -16,10 +16,22 @@
 
                 @Model.AdditionalInfo
                 <br />
-
+                @if ((bool)Model.IsInUserFavs)
+                {
+                    <a asp-action="RemoveFromFavorites" asp-controller="UserAction" asp-route-id="@Model.ProductId" class="btn btn-secondary">
+                        Unlike 
+                    </a>
+                }
+                else
+                {
+                    <a asp-action="AddToFavorites" asp-controller="UserAction" asp-route-id="@Model.ProductId" class="btn btn-primary">
+                        like
+                    </a>
+                }
+              
             </p>
             <div class="d-flex justify-content-between align-Models-center">
-               
+
 
                 <small class="text-muted">Cost : @Model.Cost</small>
 

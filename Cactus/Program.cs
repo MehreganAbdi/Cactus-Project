@@ -30,7 +30,7 @@ namespace Cactus
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IAddressRepository, AddressRepository>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
-            builder.Services.AddScoped<CactusDomain.IRepository.IFavoriteRepository, FavoriteRepository>();
+            builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 
@@ -40,7 +40,7 @@ namespace Cactus
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
             builder.Services.AddScoped<IAccountService, AccountService>();
-
+            builder.Services.AddScoped<IUserFavoriteService, UserFavoriteService>();
 
 
             #endregion
