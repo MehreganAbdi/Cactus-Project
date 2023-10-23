@@ -24,11 +24,26 @@ namespace Cactus.Controllers
                 ProductId = Id,
                 UserId = User.Identity.GetUserId()
             };
-            await userFavotireService.AddToFavoriteAsync(fav);
-
-            return RedirectToAction("Index", "Product");
+            var x = await userFavotireService.AddToFavoriteAsync(fav);
+            if (!x)
+            {
+                TempData["Error"] = "This Item Is Already In Your Favorites";
+            }
+            return RedirectToAction("Detail", "Products", Id);
 
         }
+
+        public async Task<IActionResult> RemoveFromFavorites(int Id)
+        {
+            var fav = new UserFavoriteDTO()
+            {
+                ProductId = Id,
+                UserId = User.Identity.GetUserId()
+            };
+            await userFavotireService.RemoveFromFavoritesAsync(fav);
+            return RedirectToAction("Detail", "Products", Id);
+        }
+
 
     }
 }
