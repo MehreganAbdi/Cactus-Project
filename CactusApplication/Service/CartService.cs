@@ -25,63 +25,124 @@ namespace CactusApplication.Service
 
         public async Task<bool> AddToCartAsync(CartDTO item)
         {
-            return await cartRepository.AddToCartAsync(await  ChangeToModelAsync(item));
+            return await cartRepository.AddToCartAsync(await ChangeToModelAsync(item));
         }
 
         public CartDTO ChangeToDTO(UserCart userCart)
         {
             var product = cartRepository.GetProductById(userCart.ProductId);
-            var productDetailDTO = new ProductDetailDTO()
+            var productDetailDTO = new ProductDetailDTO();
+
+            if (product != null)
             {
-                AdditionalInfo = product.AdditionalInfo,
-                Brand = product.Brand,
-                Cost = product.Count,
-                Size = product.Size,
-                Count = product.Count,
-                ProductId = userCart.ProductId,
-                ProductName = product.ProductName,
-                IsInFavorites = 
-            };
+                productDetailDTO.AdditionalInfo = product.AdditionalInfo;
+                productDetailDTO.Brand = product.Brand;
+                productDetailDTO.Cost = product.Count;
+                productDetailDTO.Size = product.Size;
+                productDetailDTO.Count = product.Count;
+                productDetailDTO.ProductId = userCart.ProductId;
+                productDetailDTO.ProductName = product.ProductName;
+                productDetailDTO.IsInFavorites = cartRepository.IsInFavorite(userCart.UserId, userCart.ProductId);
+            }
+
+
+
             return new CartDTO()
             {
-                Product = 
-
+                Product = productDetailDTO,
+                CartItemId = userCart.CartItemId,
+                ProductId = userCart.CartItemId,
+                UserId = userCart.UserId
             };
+
         }
 
-        public Task<CartDTO> ChangeToDTOAsync(UserCart userCart)
+        public async Task<CartDTO> ChangeToDTOAsync(UserCart userCart)
         {
-            throw new NotImplementedException();
+            var product = await cartRepository.GetProductByIdAsync(userCart.ProductId);
+            var productDetailDTO = new ProductDetailDTO();
+
+            if (product != null)
+            {
+                productDetailDTO.AdditionalInfo = product.AdditionalInfo;
+                productDetailDTO.Brand = product.Brand;
+                productDetailDTO.Cost = product.Count;
+                productDetailDTO.Size = product.Size;
+                productDetailDTO.Count = product.Count;
+                productDetailDTO.ProductId = userCart.ProductId;
+                productDetailDTO.ProductName = product.ProductName;
+                productDetailDTO.IsInFavorites = cartRepository.IsInFavorite(userCart.UserId, userCart.ProductId);
+            }
+
+
+
+            return new CartDTO()
+            {
+                Product = productDetailDTO,
+                CartItemId = userCart.CartItemId,
+                ProductId = userCart.CartItemId,
+                UserId = userCart.UserId
+            };
+
         }
 
         public UserCart ChangeToModel(CartDTO cartDTO)
         {
-            throw new NotImplementedException();
+            return new UserCart()
+            {
+                ProductId = cartDTO.ProductId,
+                UserId = cartDTO.UserId
+            };
         }
 
-        public Task<UserCart> ChangeToModelAsync(CartDTO cartDTO)
+        public async Task<UserCart> ChangeToModelAsync(CartDTO cartDTO)
         {
-            throw new NotImplementedException();
+            return new UserCart()
+            {
+                ProductId = cartDTO.ProductId,
+                UserId = cartDTO.UserId
+            };
         }
 
         public IEnumerable<CartDTO> GetAllByUserId(string userId)
         {
-            throw new NotImplementedException();
+            var userCart = new List<CartDTO>();
+            var items = cartRepository.GetAllByUserId(userId);
+            if(items == null)
+            {
+                return null;
+            }
+            foreach (var item in items)
+            {
+                userCart.Add(ChangeToDTO(item));
+            }
+            return userCart;
         }
 
-        public Task<IEnumerable<CartDTO>> GetAllByUserIdAsync(string userId)
+        public async Task<IEnumerable<CartDTO>> GetAllByUserIdAsync(string userId)
         {
-            throw new NotImplementedException();
+            var userCart = new List<CartDTO>();
+            var items = await cartRepository.GetAllByUserIdAsync(userId);
+            if (items == null)
+            {
+                return null;
+            }
+            foreach (var item in items)
+            {
+                userCart.Add(await ChangeToDTOAsync(item));
+            }
+            return userCart;
+
         }
 
         public bool RemoveFromCart(CartDTO item)
         {
-            throw new NotImplementedException();
+            return cartRepository.Remove(ChangeToModel(item));
         }
 
-        public Task<bool> RemoveFromCartAsync(CartDTO item)
+        public async Task<bool> RemoveFromCartAsync(CartDTO item)
         {
-            throw new NotImplementedException();
+            return await cartRepository.RemoveAsync( await ChangeToModelAsync(item));
         }
     }
 }
