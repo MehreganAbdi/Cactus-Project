@@ -7,9 +7,9 @@ namespace Cactus.Controllers
 {
     public class UserActionController : Controller
     {
-        private readonly IUserFavotireService userFavotireService;
+        private readonly IUserFavoriteService userFavotireService;
 
-        public UserActionController(IUserFavotireService userFavotireService)
+        public UserActionController(IUserFavoriteService userFavotireService)
         {
             this.userFavotireService = userFavotireService;
         }

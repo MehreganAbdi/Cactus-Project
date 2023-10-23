@@ -9,7 +9,7 @@ using System.Threading.Tasks.Dataflow;
 
 namespace CactusApplication.IService
 {
-    public interface IUserFavotireService
+    public interface IUserFavoriteService
     {
         IEnumerable<UserFavoriteDTO> GetAllUserFavorites(string UserId);
         Task<IEnumerable<UserFavoriteDTO>> GetAllUserFavoritesAsync(string UserId);

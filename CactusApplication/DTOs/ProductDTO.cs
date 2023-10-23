@@ -11,5 +11,7 @@ namespace CactusApplication.DTOs
         public string Size { get; set; }
         public Brand Brand { get; set; }
         public string? AdditionalInfo { get; set; }
+
+        public bool? IsInUserFavs { get; set; }
     }
 }

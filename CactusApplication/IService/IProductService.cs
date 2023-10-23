@@ -17,6 +17,7 @@ namespace CactusApplication.IService
         Task<bool> RemoveProductAsync(ProductDTO productVM);
         Task<bool> UpdateProduct(ProductDTO productVM);
         bool Save();
+        Task<bool> IsInUserFavorites(int productId, string userId);
         Task<bool> SaveAsync();
         Task<IEnumerable<ProductDTO>> GetAllProductsAsync();
         IEnumerable<ProductDTO> GetAllProducts();

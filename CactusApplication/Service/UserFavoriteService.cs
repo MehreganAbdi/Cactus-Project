@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace CactusApplication.Service
 {
-    public class UserFavoriteService : IUserFavotireService
+    public class UserFavoriteService : IUserFavoriteService
     {
-        private readonly IFavoriteRepository favoriteRepository;
+        private readonly CactusDomain.IRepository.IFavoriteRepository favoriteRepository;
 
-        public UserFavoriteService(IFavoriteRepository favoriteRepository)
+        public UserFavoriteService(CactusDomain.IRepository.IFavoriteRepository favoriteRepository)
         {
             this.favoriteRepository = favoriteRepository;
         }

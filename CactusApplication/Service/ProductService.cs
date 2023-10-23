@@ -2,6 +2,7 @@
 using CactusDomain.IRepository;
 using CactusApplication.IService;
 using CactusDomain.Models;
+using CactusDomain.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace CactusApplication.Service
     public class ProductService : IProductService
     {
         private readonly IProductRepository productRepository;
+        private readonly CactusDomain.IRepository.IFavoriteRepository userFavotireRepository;
 
-        public ProductService(IProductRepository productRepository)
+        public ProductService(IProductRepository productRepository, CactusDomain.IRepository.IFavoriteRepository userFavotireRepository)
         {
             this.productRepository = productRepository;
+            this.userFavotireRepository = userFavotireRepository;
         }
 
         public bool AddProduct(ProductDTO productDTO)
@@ -125,6 +128,16 @@ namespace CactusApplication.Service
             var product =await productRepository.GetProductByIdAsync(Id);
             return await ChangeToProductDTOAsync(product);
 
+        }
+
+        public async Task<bool> IsInUserFavorites(int productId, string userId)
+        {
+            var fav = new UserFavorite()
+            {
+                ProductId = productId,
+                UserId = userId
+            };
+            return await userFavotireRepository.ExistsAsync(fav);
         }
 
         public bool RemoveProduct(ProductDTO productDTO)

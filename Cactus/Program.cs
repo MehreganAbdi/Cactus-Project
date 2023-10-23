@@ -30,7 +30,7 @@ namespace Cactus
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IAddressRepository, AddressRepository>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
-            builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+            builder.Services.AddScoped<CactusDomain.IRepository.IFavoriteRepository, FavoriteRepository>();
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 
