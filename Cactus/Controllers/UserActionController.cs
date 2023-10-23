@@ -29,7 +29,7 @@ namespace Cactus.Controllers
             {
                 TempData["Error"] = "This Item Is Already In Your Favorites";
             }
-            return RedirectToAction("Detail", "Product", Id);
+            return RedirectToAction("Index", "Product");
 
         }
 
@@ -37,7 +37,7 @@ namespace Cactus.Controllers
         {
           
             await userFavotireService.RemoveFromFavoritesAsync(Id,User.Identity.GetUserId());
-            return RedirectToAction("Detail", "Product", Id);
+            return RedirectToAction("Index", "Product");
         }
 
 

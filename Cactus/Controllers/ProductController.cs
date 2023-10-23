@@ -29,20 +29,32 @@ namespace Cactus.Controllers
 
         public async Task<IActionResult> Detail(int Id)
         {
+
             var productDTO = await productService.GetProductByIdAsync(Id);
 
             if (productDTO != null)
             {
+                var productDetailDTO = new ProductDetailDTO()
+                {
+                    AdditionalInfo = productDTO.AdditionalInfo,
+                    Size = productDTO.Size,
+                    Brand = productDTO.Brand,
+                    Cost = productDTO.Cost,
+                    Count = productDTO.Count,
+                    ProductName = productDTO.ProductName,
+                    ProductId = productDTO.ProductId
+
+                };
                 if (!User.Identity.IsAuthenticated)
                 {
-                    productDTO.IsInUserFavs = false;
+                    productDetailDTO.IsInFavorites= false;
                 }
                 else
                 {
 
-                    productDTO.IsInUserFavs = await productService.IsInUserFavorites(Id, User.Identity.GetUserId());
+                    productDetailDTO.IsInFavorites = await productService.IsInUserFavorites(Id, User.Identity.GetUserId());
                 }
-                return View(productDTO);
+                return View(productDetailDTO);
             }
             TempData["Error"] = "Item Doesn't Exist";
 
