@@ -8,10 +8,12 @@ namespace Cactus.Controllers
     public class UserActionController : Controller
     {
         private readonly IUserFavoriteService userFavotireService;
+        private readonly ICartService cartService;
 
-        public UserActionController(IUserFavoriteService userFavotireService)
+        public UserActionController(IUserFavoriteService userFavotireService , ICartService cartService)
         {
             this.userFavotireService = userFavotireService;
+            this.cartService = cartService;
         }
         public async Task<IActionResult> AddToFavorites(int Id)
         {
