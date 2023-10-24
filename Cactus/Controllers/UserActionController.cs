@@ -42,6 +42,25 @@ namespace Cactus.Controllers
             return RedirectToAction("Index", "Product");
         }
 
+        public async Task<IActionResult> AddToCart(int Id)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Account", "Login");
+            }
+            var item = new CartDTO()
+            {
+                ProductId = Id,
+                UserId = User.Identity.GetUserId()
+            };
+            await cartService.AddToCartAsync(item);
+            return RedirectToAction("Index", "Product");
+        }
 
+        public async Task<IActionResult> RemoveFromCart(int Id)
+        {
+            await cartService.RemoveFromCartAsync(Id);
+            return RedirectToAction("Index", "Product");
+        }
     }
 }

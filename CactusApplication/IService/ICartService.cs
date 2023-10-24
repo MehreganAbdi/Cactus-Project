@@ -14,6 +14,8 @@ namespace CactusApplication.IService
         Task<bool> AddToCartAsync(CartDTO item);
         bool RemoveFromCart(CartDTO item);
         Task<bool> RemoveFromCartAsync(CartDTO item);
+        bool RemoveFromCart(int itemId);
+        Task<bool> RemoveFromCartAsync(int itemId);
         IEnumerable<CartDTO> GetAllByUserId(string userId);
         Task<IEnumerable<CartDTO>> GetAllByUserIdAsync(string  userId);
         CartDTO ChangeToDTO(UserCart userCart);

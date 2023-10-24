@@ -40,6 +40,17 @@ namespace CactusApplication.Repository
             return await _context.UsersCarts.Where(c => c.UserId == UserId).ToListAsync();
         }
 
+        public UserCart GetByItemId(int Id)
+        {
+            return _context.UsersCarts.FirstOrDefault(c => c.CartItemId == Id);
+        }
+
+        public async Task<UserCart> GetByItemIdAsync(int Id)
+        {
+            return await _context.UsersCarts.FirstOrDefaultAsync(c => c.CartItemId == Id);
+
+        }
+
         public Product GetProductById(int Id)
         {
             return _context.Products.FirstOrDefault(p => p.ProductId == Id);
