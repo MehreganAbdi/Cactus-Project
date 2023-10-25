@@ -23,7 +23,7 @@ namespace Cactus
 
 
             #region DI
-            
+
 
             //Repositories
 
@@ -41,6 +41,7 @@ namespace Cactus
             builder.Services.AddScoped<IEmailService, EmailService>();
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<IUserFavoriteService, UserFavoriteService>();
+            builder.Services.AddScoped<ICartService, CartService>();
 
 
             #endregion

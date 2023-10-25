@@ -8,10 +8,12 @@ namespace Cactus.Controllers
     public class UserActionController : Controller
     {
         private readonly IUserFavoriteService userFavotireService;
+        private readonly ICartService cartService;
 
-        public UserActionController(IUserFavoriteService userFavotireService)
+        public UserActionController(IUserFavoriteService userFavotireService , ICartService cartService)
         {
             this.userFavotireService = userFavotireService;
+            this.cartService = cartService;
         }
         public async Task<IActionResult> AddToFavorites(int Id)
         {
@@ -40,6 +42,25 @@ namespace Cactus.Controllers
             return RedirectToAction("Index", "Product");
         }
 
+        public async Task<IActionResult> AddToCart(int Id)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Account", "Login");
+            }
+            var item = new CartDTO()
+            {
+                ProductId = Id,
+                UserId = User.Identity.GetUserId()
+            };
+            await cartService.AddToCartAsync(item);
+            return RedirectToAction("Index", "Product");
+        }
 
+        public async Task<IActionResult> RemoveFromCart(int Id)
+        {
+            await cartService.RemoveFromCartAsync(Id);
+            return RedirectToAction("Index", "Product");
+        }
     }
 }
