@@ -79,6 +79,16 @@ namespace CactusApplication.Repository
             return await _context.Products.FirstOrDefaultAsync(p => p.ProductId == Id);
         }
 
+        public int PurchasedCountByUser(int productId, string userId)
+        {
+            return _context.UsersCarts.Count(e => e.UserId == userId && e.ProductId == productId);
+        }
+
+        public async Task<int> PurchasedCountByUserAsync(int productId, string userId)
+        {
+            return await _context.UsersCarts.CountAsync(e => e.UserId == userId && e.ProductId == productId);
+        }
+
 
         public bool Remove(Product product)
         {

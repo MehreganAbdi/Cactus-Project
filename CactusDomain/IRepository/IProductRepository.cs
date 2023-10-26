@@ -22,6 +22,8 @@ namespace CactusDomain.IRepository
         Task<bool> RemoveAsync(Product product);
         bool Update(Product product);
         Task<bool> UpdateAsync(Product product);
+        int PurchasedCountByUser(int productId, string userId);
+        Task<int> PurchasedCountByUserAsync(int productId, string userId);
         bool Save();
         Task<bool> SaveAsync();
     }

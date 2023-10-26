@@ -140,6 +140,16 @@ namespace CactusApplication.Service
             return await userFavotireRepository.ExistsAsync(fav);
         }
 
+        public int PurchasedCountByUser(int productId, string userId)
+        {
+            return productRepository.PurchasedCountByUser(productId, userId);
+        }
+
+        public async Task<int> PurchasedCountByUserAsync(int productId, string userId)
+        {
+            return await productRepository.PurchasedCountByUserAsync(productId, userId);
+        }
+
         public bool RemoveProduct(ProductDTO productDTO)
         {
             var product =  productRepository.GetProductById(productDTO.ProductId);

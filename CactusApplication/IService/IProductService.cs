@@ -27,5 +27,7 @@ namespace CactusApplication.IService
         Task<ProductDTO> ChangeToProductDTOAsync(Product product);
         ProductDTO GetProductById(int Id);
         Task<ProductDTO> GetProductByIdAsync(int Id);
+        int PurchasedCountByUser(int productId, string userId);
+        Task<int> PurchasedCountByUserAsync(int productId, string userId);
     }
 }

@@ -17,5 +17,6 @@ namespace CactusApplication.DTOs
         public Brand Brand { get; set; }
         public string? AdditionalInfo { get; set; }
         public bool IsInFavorites { get; set; }
+        public int PurchasedCountByUser { get; set; }
     }
 }

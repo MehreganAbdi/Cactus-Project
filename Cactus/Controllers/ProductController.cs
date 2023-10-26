@@ -42,7 +42,8 @@ namespace Cactus.Controllers
                     Cost = productDTO.Cost,
                     Count = productDTO.Count,
                     ProductName = productDTO.ProductName,
-                    ProductId = productDTO.ProductId
+                    ProductId = productDTO.ProductId,
+                    PurchasedCountByUser = await productService.PurchasedCountByUserAsync(productDTO.ProductId , User.Identity.GetUserId())
 
                 };
                 if (!User.Identity.IsAuthenticated)
