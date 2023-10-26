@@ -28,7 +28,8 @@ namespace CactusApplication.Repository
                 Brand = product.Brand,
                 Cost = product.Cost,
                 Count = product.Count,
-                Size = product.Size
+                Size = product.Size,
+                Image = product.Image
             };
             _context.Products.Add(newproduct);
             return Save();
@@ -43,7 +44,8 @@ namespace CactusApplication.Repository
                 Brand = product.Brand,
                 Cost = product.Cost,
                 Count = product.Count,
-                Size = product.Size
+                Size = product.Size,
+                Image = product.Image
             };
             await _context.Products.AddAsync(newproduct);
             return await SaveAsync();

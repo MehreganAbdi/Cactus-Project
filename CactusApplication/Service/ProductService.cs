@@ -46,6 +46,7 @@ namespace CactusApplication.Service
                 Cost = productDTO.Cost,
                 Count = productDTO.Count,
                 Size = productDTO.Size
+               
             };
             return product;
         }

@@ -9,11 +9,15 @@ namespace Cactus.Controllers
     {
         private readonly IProductService productService;
         private readonly IUserFavoriteService userFavotireService;
+        private readonly IPhotoService photoService;
 
-        public ProductController(IProductService productService, IUserFavoriteService userFavotireService)
+        public ProductController(IProductService productService,
+                                 IUserFavoriteService userFavotireService,
+                                 IPhotoService photoService)
         {
             this.productService = productService;
             this.userFavotireService = userFavotireService;
+            this.photoService = photoService;
         }
 
         public async Task<IActionResult> Index()
@@ -43,7 +47,8 @@ namespace Cactus.Controllers
                     Count = productDTO.Count,
                     ProductName = productDTO.ProductName,
                     ProductId = productDTO.ProductId,
-                    PurchasedCountByUser = await productService.PurchasedCountByUserAsync(productDTO.ProductId , User.Identity.GetUserId())
+                    PurchasedCountByUser = await productService.PurchasedCountByUserAsync(productDTO.ProductId , User.Identity.GetUserId()),
+                    ImageUri = productDTO.ImageUri
 
                 };
                 if (!User.Identity.IsAuthenticated)
@@ -76,6 +81,8 @@ namespace Cactus.Controllers
                 TempData["Error"] = "Adding Failed , Try Again";
                 return View(productDTO);
             }
+            var result = await photoService.AddPhotoAsync(productDTO.Image);
+            productDTO.ImageUri = result.Uri.ToString();
             await productService.AddProductAsync(productDTO);
             return RedirectToAction("Index", "Product");
         }
@@ -99,6 +106,13 @@ namespace Cactus.Controllers
                 TempData["Error"] = "Procccess Failed , Try Again";
                 return View(productDTO);
             }
+
+            if (productDTO.Image != null)
+            {
+                var result = await photoService.AddPhotoAsync(productDTO.Image);
+                productDTO.ImageUri = result.Uri.ToString();
+            }
+            
             await productService.UpdateProduct(productDTO);
             return RedirectToAction("Index", "Product");
         }
