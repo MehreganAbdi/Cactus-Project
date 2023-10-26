@@ -15,6 +15,13 @@
                 <h6>@Model.Brand.ToString()</h6>
 
                 @Model.AdditionalInfo
+
+                <br />
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <b>You Bought This Item :  @Model.PurchasedCountByUser</b>
+
+                }
                 <br />
                 @if ((bool)Model.IsInFavorites)
                 {
@@ -31,7 +38,7 @@
                     <a type="button" class="btn btn-sm btn-primary" asp-controller="UserAction" asp-action="AddToCart" asp-route-id="@Model.ProductId">Buy</a>
 
                 }
-                
+
             </p>
             <div class="d-flex justify-content-between align-Models-center">
 
