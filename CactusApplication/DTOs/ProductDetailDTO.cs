@@ -1,4 +1,5 @@
 ﻿using CactusDomain.Data.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,8 @@ namespace CactusApplication.DTOs
         public string? AdditionalInfo { get; set; }
         public bool IsInFavorites { get; set; }
         public int PurchasedCountByUser { get; set; }
+        public IFormFile? Image { get; set; }
+        public string? ImageUri { get; set; }
+
     }
 }

@@ -7,6 +7,7 @@ using CactusDomain.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using CactusDomain.CloudinarySetup;
 
 namespace Cactus
 {
@@ -42,12 +43,19 @@ namespace Cactus
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<IUserFavoriteService, UserFavoriteService>();
             builder.Services.AddScoped<ICartService, CartService>();
-
+            builder.Services.AddScoped<IPhotoService, PhotoService>();
 
             #endregion
 
 
 
+
+
+            #region Configs
+
+            builder.Services.Configure<CloudinarySetup>(builder.Configuration.GetSection("CloudinarySetup"));
+            
+            #endregion
 
 
 

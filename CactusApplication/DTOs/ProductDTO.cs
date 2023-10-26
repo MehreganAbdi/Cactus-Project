@@ -1,4 +1,5 @@
 ﻿using CactusDomain.Data.Enums;
+using Microsoft.AspNetCore.Http;
 
 namespace CactusApplication.DTOs
 {
@@ -11,5 +12,7 @@ namespace CactusApplication.DTOs
         public string Size { get; set; }
         public Brand Brand { get; set; }
         public string? AdditionalInfo { get; set; }
+        public IFormFile? Image { get; set; }
+        public string? ImageUri { get; set; }
     }
 }

@@ -47,6 +47,11 @@ namespace CactusApplication.Service
                 Count = productDTO.Count,
                 Size = productDTO.Size
             };
+            if (productDTO.ImageUri != null)
+            {
+                product.Image = productDTO.ImageUri;
+            }  
+               
             return product;
         }
 
@@ -62,6 +67,10 @@ namespace CactusApplication.Service
                 Count = productDTO.Count,
                 Size = productDTO.Size
             };
+            if (productDTO.ImageUri != null)
+            {
+                product.Image = productDTO.ImageUri;
+            }
             return  product;
         }
 
@@ -76,7 +85,12 @@ namespace CactusApplication.Service
                 ProductName= product.ProductName,
                 Count = product.Count,
                 Size = product.Size
+               
             };
+            if (product.Image!= null)
+            {
+                productDTO.ImageUri = product.Image;
+            }
             return productDTO;  
         }
 
@@ -92,6 +106,10 @@ namespace CactusApplication.Service
                 Count = product.Count,
                 Size = product.Size
             };
+            if (product.Image != null)
+            {
+                productDTO.ImageUri = product.Image;
+            }
             return productDTO;
         }
 
