@@ -142,17 +142,18 @@ namespace CactusApplication.Service
 
         public bool RemoveFromCart(int itemId)
         {
-            var item = cartRepository.
+            return cartRepository.Remove(cartRepository.GetByItemId(itemId));
         }
+
 
         public async Task<bool> RemoveFromCartAsync(CartDTO item)
         {
-            return await cartRepository.RemoveAsync( await ChangeToModelAsync(item));
+            return await cartRepository.RemoveAsync(await ChangeToModelAsync(item));
         }
 
-        public Task<bool> RemoveFromCartAsync(int itemId)
+        public async Task<bool> RemoveFromCartAsync(int itemId)
         {
-            throw new NotImplementedException();
+            return await cartRepository.RemoveAsync(await cartRepository.GetByItemIdAsync(itemId));
         }
     }
 }
