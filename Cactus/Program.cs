@@ -43,7 +43,7 @@ namespace Cactus
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<IUserFavoriteService, UserFavoriteService>();
             builder.Services.AddScoped<ICartService, CartService>();
-
+            builder.Services.AddScoped<IPhotoService, PhotoService>();
 
             #endregion
 
