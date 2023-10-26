@@ -16,7 +16,7 @@
     <a class="btn primary-btn" asp-controller="Product" asp-action="Create" >Add Product</a>
 </center>
 <body>
-    <form method="post" asp-action="Create">
+    <form method="post" asp-action="Create" enctype="multipart/form-data">
         <div class="form-group">
             <label asp-for="ProductName">ProductName</label>
             <input asp-for="ProductName" type="text" class="form-control" placeholder="Enter ProductName">

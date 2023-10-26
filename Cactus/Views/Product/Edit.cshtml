@@ -14,7 +14,7 @@
 </center>
 
 <body>
-    <form method="post" asp-action="Edit">
+    <form method="post" asp-action="Edit" enctype="multipart/form-data">
         <input type="hidden" asp-for="ProductId" value="@Model.ProductId" id="ProductId"/>
         <div class="form-group">
             <label asp-for="ProductName">ProductName</label>
@@ -45,8 +45,16 @@
             <select asp-for="Brand" asp-items="@Html.GetEnumSelectList<Brand>()">
                 <option> - - select Brand - - </option>
             </select>
-        </div><br /><br />
-
+        </div><br />
+        
+        <br />
+        <br />
+        <div class="form-group">
+            <label asp-for="Image">Image</label>
+            <input asp-for="Image" type="file" class="form-control" placeholder="Image">
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <br />
 
         <br />
         <button type="submit" class="btn btn-primary">Submit</button>
