@@ -6,7 +6,7 @@
 
 
 
-
+<a class="btn primary-btn" asp-controller="Product" asp-action="Create">Add Product</a>
 
 <div class="container">
     @if (TempData["Error"] != null)
@@ -29,7 +29,7 @@
                     <div class="card mb-4 box-shadow">
                         @if (item.ImageUri != null)
                         {
-                            <img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; display: block;" src="@item.ImageUri" data-holder-rendered="true">
+                            <img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width:100%; display: block;" src="@item.ImageUri" data-holder-rendered="true">
 
                         }
                         else

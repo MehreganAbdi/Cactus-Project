@@ -13,7 +13,7 @@
             <span><b>Error Occured!</b> - @TempData["Error"]</span>
         </div>
     }
-    <a class="btn primary-btn" asp-controller="Product" asp-action="Create" >Add Product</a>
+   
 </center>
 <body>
     <form method="post" asp-action="Create" enctype="multipart/form-data">
@@ -54,7 +54,13 @@
                 <option> - - select Brand - - </option>
             </select>
         </div><br /><br />
-        
+        <br />
+        <div class="form-group">
+            <label asp-for="Image">Image</label>
+            <input asp-for="Image" type="file" class="form-control" placeholder="Image">
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <br />
 
         <br />
         <button type="submit" class="btn btn-primary">Submit</button>
