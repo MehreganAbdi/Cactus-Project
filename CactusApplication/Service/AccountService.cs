@@ -89,7 +89,12 @@ namespace CactusApplication.Service
             {
                 Email = registerDTO.EmailAddress
                 ,
-                UserName = registerDTO.UserName.Replace(" ", "")
+                UserName = registerDTO.UserName.Replace(" ", ""),
+                Address = new Address()
+                {
+                    FullAddress="NotDefined",
+                    PostalCode = "NotDefined"
+                }
             };
 
             var createUser = await _userManager.CreateAsync(newUser, registerDTO.Password);
