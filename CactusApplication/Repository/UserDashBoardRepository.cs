@@ -64,6 +64,16 @@ namespace CactusApplication.Repository
             return await context.UsersCarts.FirstOrDefaultAsync(i => i.ProductId == itemId);
         }
 
+        public Product GetProductById(int ProductId)
+        {
+            return context.Products.FirstOrDefault(p => p.ProductId == ProductId);
+        }
+
+        public async Task<Product> GetProductByIdAsync(int ProductId)
+        {
+            return await context.Products.FirstOrDefaultAsync(p => p.ProductId == ProductId);
+
+        }
 
         public User GetUserById(string userId)
         {
@@ -73,6 +83,16 @@ namespace CactusApplication.Repository
         public Task<User> GetUserByIdAsync(string userId)
         {
             return context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+        }
+
+        public async Task<bool> IsInFavorites(string userId, int ProductId)
+        {
+            return await context.UserFavorites.AnyAsync(f => f.UserId == userId && f.ProductId == ProductId);
+        }
+
+        public async Task<int> PurchaseCountAsync(string userId, int ProductId)
+        {
+            return await context.UsersCarts.CountAsync(e => e.UserId == userId && e.ProductId == ProductId);
         }
 
         public bool Save()

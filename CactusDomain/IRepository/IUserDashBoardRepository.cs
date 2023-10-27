@@ -18,5 +18,9 @@ namespace CactusDomain.IRepository
         bool DeleteUserById(string userId);
         bool Update(UserCart userCart);
         Task<bool> UpdateAsync(UserCart userCart);
+        Task<Product> GetProductByIdAsync(int ProductId);
+        Product GetProductById(int ProductId);
+        Task<int> PurchaseCountAsync(string userId, int ProductId);
+        Task<bool> IsInFavorites(string userId, int ProductId);
     }
 }
