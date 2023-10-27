@@ -21,6 +21,8 @@ namespace CactusDomain.IRepository
         Task<Product> GetProductByIdAsync(int ProductId);
         Product GetProductById(int ProductId);
         Task<int> PurchaseCountAsync(string userId, int ProductId);
-        Task<bool> IsInFavorites(string userId, int ProductId);
+        Task<bool> IsInFavoritesAsync(string userId, int ProductId);
+        int PurchaseCount(string userId, int ProductId);
+        bool IsInFavorites(string userId, int ProductId);
     }
 }

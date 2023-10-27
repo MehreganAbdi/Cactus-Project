@@ -2,11 +2,7 @@
 using CactusApplication.IService;
 using CactusDomain.IRepository;
 using CactusDomain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CactusApplication.Service
 {
@@ -41,7 +37,28 @@ namespace CactusApplication.Service
 
         public CartDTO ChangeModelToDTO(UserCart userCart)
         {
-            throw new NotImplementedException();
+            var product = userDashBoardRepository.GetProductById(userCart.ProductId);
+            var productDetailDTO = new ProductDetailDTO();
+            if (product != null)
+            {
+                productDetailDTO.ProductName = product.ProductName;
+                productDetailDTO.AdditionalInfo = product.AdditionalInfo;
+                productDetailDTO.Brand = product.Brand;
+                productDetailDTO.Cost = product.Cost;
+                productDetailDTO.Count = product.Count;
+                productDetailDTO.ImageUri = product.Image;
+                productDetailDTO.Size = product.Size;
+                productDetailDTO.PurchasedCountByUser = userDashBoardRepository.PurchaseCount(userCart.UserId, userCart.ProductId);
+                productDetailDTO.IsInFavorites = userDashBoardRepository.IsInFavorites(userCart.UserId, userCart.ProductId);
+                productDetailDTO.ProductId = userCart.ProductId;
+            }
+            return new CartDTO()
+            {
+                Product = productDetailDTO,
+                ProductId = userCart.ProductId,
+                UserId = userCart.UserId,
+                CartItemId = userCart.CartItemId
+            };
         }
 
         public async Task<CartDTO> ChangeModelToDTOAsync(UserCart userCart)
@@ -58,7 +75,7 @@ namespace CactusApplication.Service
                 productDetailDTO.ImageUri = product.Image;
                 productDetailDTO.Size = product.Size;
                 productDetailDTO.PurchasedCountByUser = await userDashBoardRepository.PurchaseCountAsync(userCart.UserId , userCart.ProductId);
-                productDetailDTO.IsInFavorites = await userDashBoardRepository.IsInFavorites(userCart.UserId, userCart.ProductId);
+                productDetailDTO.IsInFavorites = await userDashBoardRepository.IsInFavoritesAsync(userCart.UserId, userCart.ProductId);
                 productDetailDTO.ProductId = userCart.ProductId;
             }
             return new CartDTO()

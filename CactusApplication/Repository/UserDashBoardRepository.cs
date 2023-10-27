@@ -85,7 +85,7 @@ namespace CactusApplication.Repository
             return context.Users.FirstOrDefaultAsync(u => u.Id == userId);
         }
 
-        public async Task<bool> IsInFavorites(string userId, int ProductId)
+        public async Task<bool> IsInFavoritesAsync(string userId, int ProductId)
         {
             return await context.UserFavorites.AnyAsync(f => f.UserId == userId && f.ProductId == ProductId);
         }
