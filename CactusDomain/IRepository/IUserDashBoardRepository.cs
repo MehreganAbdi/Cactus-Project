@@ -10,7 +10,6 @@ namespace CactusDomain.IRepository
         User GetUserById(string userId);
         Task<UserCart> GetItemByIdAsync(int itemId);
         UserCart GetItemById(int itemId);
-
         bool Save();
         Task<bool> SaveAsync();
         Task<bool> DeleteItemByIdAsync(int itemId);
