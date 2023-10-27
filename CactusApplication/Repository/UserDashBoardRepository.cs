@@ -85,10 +85,22 @@ namespace CactusApplication.Repository
             return context.Users.FirstOrDefaultAsync(u => u.Id == userId);
         }
 
+        public bool IsInFavorites(string userId, int ProductId)
+        {
+            return context.UserFavorites.Any(f => f.UserId == userId && f.ProductId == ProductId);
+
+        }
+
         public async Task<bool> IsInFavoritesAsync(string userId, int ProductId)
         {
             return await context.UserFavorites.AnyAsync(f => f.UserId == userId && f.ProductId == ProductId);
         }
+
+        public int PurchaseCount(string userId, int ProductId)
+        {
+            return context.UsersCarts.Count(e => e.UserId == userId && e.ProductId == ProductId);
+        }
+
 
         public async Task<int> PurchaseCountAsync(string userId, int ProductId)
         {
