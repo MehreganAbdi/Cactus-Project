@@ -33,6 +33,8 @@ namespace Cactus
             builder.Services.AddScoped<ICartRepository, CartRepository>();
             builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+            builder.Services.AddScoped<IUserDashBoardRepository, UserDashBoardRepository>();
+
 
 
 
@@ -44,6 +46,8 @@ namespace Cactus
             builder.Services.AddScoped<IUserFavoriteService, UserFavoriteService>();
             builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<IPhotoService, PhotoService>();
+            builder.Services.AddScoped<IUserDashBoardService , UserDashBoardService>();
+
 
             #endregion
 
