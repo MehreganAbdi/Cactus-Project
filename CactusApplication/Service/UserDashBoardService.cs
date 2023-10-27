@@ -57,33 +57,57 @@ namespace CactusApplication.Service
                 productDetailDTO.Count = product.Count;
                 productDetailDTO.ImageUri = product.Image;
                 productDetailDTO.Size = product.Size;
-
+                productDetailDTO.PurchasedCountByUser = await userDashBoardRepository.PurchaseCountAsync(userCart.UserId , userCart.ProductId);
+                productDetailDTO.IsInFavorites = await userDashBoardRepository.IsInFavorites(userCart.UserId, userCart.ProductId);
+                productDetailDTO.ProductId = userCart.ProductId;
             }
             return new CartDTO()
             {
-                Product =  ,
+                Product = productDetailDTO,
+                ProductId = userCart.ProductId,
+                UserId = userCart.UserId,
+                CartItemId = userCart.CartItemId
+            };
 
-            }
         }
 
         public IEnumerable<CartDTO> GetAllByUserId(string userId)
         {
-            throw new NotImplementedException();
+            var all = userDashBoardRepository.GetAll(userId);
+            var allToDTO = new List<CartDTO>();
+            if(all!= null)
+            {
+                foreach (var item in all)
+                {
+                    allToDTO.Add( ChangeModelToDTO(item));
+                }
+            }
+            return allToDTO;
         }
 
-        public Task<IEnumerable<CartDTO>> GetAllByUserIdAsync(string userId)
+        public async Task<IEnumerable<CartDTO>> GetAllByUserIdAsync(string userId)
         {
-            throw new NotImplementedException();
+            var all = await userDashBoardRepository.GetAllAsync(userId);
+            var allToDTO = new List<CartDTO>();
+            if (all != null)
+            {
+                foreach (var item in all)
+                {
+                    allToDTO.Add(await ChangeModelToDTOAsync(item));
+                }
+            }
+            return allToDTO;
+
         }
 
         public bool RemoveItem(int Id)
         {
-            throw new NotImplementedException();
+            return userDashBoardRepository.DeleteItemById(Id);
         }
 
-        public Task<bool> RemoveItemAsync(int Id)
+        public async Task<bool> RemoveItemAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await userDashBoardRepository.DeleteItemByIdAsync(Id);
         }
     }
 }
