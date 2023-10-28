@@ -20,14 +20,20 @@ namespace Cactus.Controllers
             this.photoService = photoService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searching)
         {
             var productDTOs = await productService.GetAllProductsAsync();
             if (productDTOs == null)
             {
                 TempData["Error"] = "No Products Yet!";
             }
-
+            if(searching != null)
+            {
+                productDTOs = productDTOs.Where(e => e.ProductName.Contains(searching) ||
+                                                      e.Size.Contains(searching) ||
+                                                      e.AdditionalInfo!=null ? e.AdditionalInfo.Contains(searching)  : false ||
+                                                      e.Brand.ToString().Contains(searching));
+            }
             return View(productDTOs);
         }
 

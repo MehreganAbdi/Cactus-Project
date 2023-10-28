@@ -17,7 +17,17 @@
     }
     else
     {
+        <center>
+            @using (Html.BeginForm("Index", "Sneaker", FormMethod.Get))
+            {
 
+                @Html.TextBox("searching")
+                <br />
+                <br />
+                <input type="image" src="~/icons/search-3-32.png" style="width:40px; padding:5px; border-radius:20%" value="Search" class="btn-primary" />
+
+            }
+        </center>
         <br />
         <br />
 
