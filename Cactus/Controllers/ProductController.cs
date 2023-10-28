@@ -70,6 +70,11 @@ namespace Cactus.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+            if (!User.IsInRole("admin"))
+            {
+                return RedirectToAction("Index", "Product");
+            }
+
             var reloadSafety = new ProductDTO();
             return View(reloadSafety);
         }
@@ -90,6 +95,10 @@ namespace Cactus.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
+            if (!User.IsInRole("admin"))
+            {
+                return RedirectToAction("Index", "Product");
+            }
             var productDTO = await productService.GetProductByIdAsync(Id);
             if (productDTO != null)
             {
@@ -119,6 +128,10 @@ namespace Cactus.Controllers
 
         public async Task<IActionResult> Delete(int Id)
         {
+            if (!User.IsInRole("admin"))
+            {
+                return RedirectToAction("Index", "Product");
+            }
             var product = await productService.GetProductByIdAsync(Id);
             if (product == null)
             {
