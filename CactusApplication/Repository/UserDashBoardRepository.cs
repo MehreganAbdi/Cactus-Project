@@ -56,12 +56,12 @@ namespace CactusApplication.Repository
 
         public UserCart GetItemById(int itemId)
         {
-            return context.UsersCarts.FirstOrDefault(i => i.ProductId == itemId);
+            return context.UsersCarts.FirstOrDefault(i => i.CartItemId == itemId);
         }
 
         public async Task<UserCart> GetItemByIdAsync(int itemId)
         {
-            return await context.UsersCarts.FirstOrDefaultAsync(i => i.ProductId == itemId);
+            return await context.UsersCarts.FirstOrDefaultAsync(i => i.CartItemId == itemId);
         }
 
         public Product GetProductById(int ProductId)
