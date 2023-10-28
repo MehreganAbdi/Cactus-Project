@@ -29,10 +29,11 @@ namespace Cactus.Controllers
             }
             if(searching != null)
             {
-                productDTOs = productDTOs.Where(e => e.ProductName.Contains(searching) ||
+                
+                productDTOs =  productDTOs.Where(e => e.ProductName.Contains(searching) ||
                                                       e.Size.Contains(searching) ||
                                                       e.AdditionalInfo!=null ? e.AdditionalInfo.Contains(searching)  : false ||
-                                                      e.Brand.ToString().Contains(searching));
+                                                      e.Brand.ToString().Contains(searching)).ToList();
             }
             return View(productDTOs);
         }
