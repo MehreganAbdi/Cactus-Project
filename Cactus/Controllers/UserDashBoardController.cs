@@ -27,7 +27,9 @@ namespace Cactus.Controllers
             return RedirectToAction("Index", "UserDashBoard");
         }
 
-
+        //public async Task<IActionResult> EditProfile()
+        //{
+        //}
 
     }
 }

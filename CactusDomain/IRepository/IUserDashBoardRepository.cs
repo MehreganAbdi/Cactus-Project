@@ -4,6 +4,7 @@ namespace CactusDomain.IRepository
 {
     public interface IUserDashBoardRepository
     {
+        
         IEnumerable<UserCart> GetAll(string userId);
         Task<IEnumerable<UserCart>> GetAllAsync(string userId);
         Task<User> GetUserByIdAsync(string userId);

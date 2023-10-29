@@ -88,6 +88,32 @@ namespace CactusApplication.Service
 
         }
 
+        public UserDTO ChangeUserToUserDTO(User user)
+        {
+            return new UserDTO()
+            {
+                UserId = user.Id,
+                Address = user.Address,
+                AddressId = user.AddressId,
+                Email = user.Email,
+                TotalCost = user.TotalCost,
+                UserName = user.UserName
+            };
+         }
+
+        public async Task<UserDTO> ChangeUserToUserDTOAsync(User user)
+        {
+            return new UserDTO()
+            {
+                UserId = user.Id,
+                Address = user.Address,
+                AddressId = user.AddressId,
+                Email = user.Email,
+                TotalCost = user.TotalCost,
+                UserName = user.UserName
+            };
+        }
+
         public IEnumerable<CartDTO> GetAllByUserId(string userId)
         {
             var all = userDashBoardRepository.GetAll(userId);
@@ -115,6 +141,16 @@ namespace CactusApplication.Service
             }
             return allToDTO;
 
+        }
+
+        public UserDTO GetUserDTOByUserId(string Id)
+        {
+            return ChangeUserToUserDTO(userDashBoardRepository.GetUserById(Id));
+        }
+
+        public async Task<UserDTO> GetUserDTOByUserIdAsync(string Id)
+        {
+            return await ChangeUserToUserDTOAsync(await userDashBoardRepository.GetUserByIdAsync(Id));
         }
 
         public bool RemoveItem(int Id)

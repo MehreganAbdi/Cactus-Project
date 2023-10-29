@@ -18,6 +18,10 @@ namespace CactusApplication.IService
         Task<bool> RemoveItemAsync(int Id);
         IEnumerable<CartDTO> GetAllByUserId(string userId);
         Task<IEnumerable<CartDTO>> GetAllByUserIdAsync(string userId);
+        UserDTO GetUserDTOByUserId(string Id);
+        Task<UserDTO> GetUserDTOByUserIdAsync(string Id);
+        UserDTO ChangeUserToUserDTO(User user);
+        Task<UserDTO> ChangeUserToUserDTOAsync(User user);
 
     }
 }
