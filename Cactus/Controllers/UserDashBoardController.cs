@@ -51,11 +51,12 @@ namespace Cactus.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["Error"] = "All Must Be Filled";
+                TempData["Error"] = "Fields Must Be Valued";
                 return View(userDTO);
             }
 
             await userDashBoardService.UpdateUserAsync(userDTO);
+            return RedirectToAction("Index", "UserDashBoard");
         }
 
     }
