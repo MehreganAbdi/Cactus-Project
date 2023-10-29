@@ -3,15 +3,10 @@
 @{
     ViewData["Title"] = " Edit Profile";
 }
-<a asp-controller="Account" asp-action="EmailConfirmation" class="btn btn-primary">Confirm Your Email</a>
-
-
+<br />
+<br />
+<br />
 <form method="post" asp-action="EditProfile">
-    <input type="hidden" value="Id" id="Id" asp-for="UserId" />
-    <input type="hidden" value="@Model.AddressId"  asp-for="AddressId" />
-    <input type="hidden" value="@Model.Email" asp-for="Email" />
-    <input type="hidden" value="@Model.TotalCost" asp-for="TotalCost" />
-
     <div class="form-group">
         <label asp-for="UserName"> User Name </label>
         <input asp-for="UserName" type="text" value="@Model.UserName" class="form-control" placeholder="UserName">
@@ -19,11 +14,27 @@
 
     </div>
     <div class="form-group">
-        <label asp-for="Address"> Address </label>
-        <input asp-for="Address" type="text" value="@Model.Address" class="form-control" placeholder="Address">
-        <span asp-validation-for="Address" class="text-danger"></span>
+        <label asp-for="FullAddress"> FullAddress</label>
+        <input asp-for="FullAddress" type="text" value="@Model.FullAddress" class="form-control" placeholder="FullAddress">
+        <span asp-validation-for="FullAddress" class="text-danger"></span>
 
     </div>
+
+    <div class="form-group">
+        <label asp-for="Postal">Postal</label>
+        <input asp-for="Postal" type="text" value="@Model.Postal" class="form-control" placeholder="Postal">
+        <span asp-validation-for="Postal" class="text-danger"></span>
+
+    </div>
+
+
+    <input type="hidden" value="@Model.UserId" asp-for="UserId" />
+    <input type="hidden" value="@Model.AddressId"  asp-for="AddressId" />
+    <input type="hidden" value="@Model.Email" asp-for="Email" />
+    <input type="hidden" value="@Model.TotalCost" asp-for="TotalCost" />
+
+
+
     <br /><br />
 
     <br />

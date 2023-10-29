@@ -14,7 +14,9 @@ namespace CactusApplication.DTOs
         public string  Email { get; set; }
         public string UserName { get; set; }
         public int TotalCost { get; set; }
-        public Address Address { get; set; }
+        public string FullAddress { get; set; }
+        public string Postal { get; set; }
+        public Address? Address { get; set; }
         public int AddressId { get; set; }
         public int? RCode { get; set; }
     }

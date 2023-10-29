@@ -1,5 +1,6 @@
 ﻿using CactusApplication.DTOs;
 using CactusApplication.IService;
+using CactusDomain.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -54,6 +55,13 @@ namespace Cactus.Controllers
                 TempData["Error"] = "Fields Must Be Valued";
                 return View(userDTO);
             }
+            
+            userDTO.Address = new Address()
+            {
+                AddressId = userDTO.AddressId,
+                FullAddress = userDTO.FullAddress,
+                PostalCode = userDTO.Postal
+            };
 
             await userDashBoardService.UpdateUserAsync(userDTO);
             return RedirectToAction("Index", "UserDashBoard");
