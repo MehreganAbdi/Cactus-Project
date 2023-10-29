@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CactusApplication.Repository
 {
@@ -27,6 +28,17 @@ namespace CactusApplication.Repository
         {
             await _context.Addresses.AddAsync(address);
             return await SaveAsync();
+        }
+
+        public Address GetAddressById(int Id)
+        {
+            return _context.Addresses.FirstOrDefault(a => a.AddressId == Id);
+        }
+
+
+        public async Task<Address> GetAddressByIdAsync(int Id)
+        {
+            return await _context.Addresses.FirstOrDefaultAsync(a => a.AddressId == Id);
         }
 
         public bool Remove(Address address)

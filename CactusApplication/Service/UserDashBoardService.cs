@@ -2,6 +2,7 @@
 using CactusApplication.IService;
 using CactusDomain.IRepository;
 using CactusDomain.Models;
+using Microsoft.AspNet.Identity;
 
 
 namespace CactusApplication.Service
@@ -88,6 +89,58 @@ namespace CactusApplication.Service
 
         }
 
+        public User ChangeUserDTOToUser(UserDTO user)
+        {
+            return new User()
+            {
+                Id = user.UserId,
+                Address = user.Address,
+                AddressId = user.AddressId,
+                Email = user.Email,
+                TotalCost = user.TotalCost,
+                UserName = user.UserName
+            };
+        }
+
+        public async Task<User> ChangeUserDTOToUserAsync(UserDTO user)
+        {
+            return new User()
+            {
+                Id = user.UserId,
+                Address = user.Address,
+                AddressId = user.AddressId,
+                Email = user.Email,
+                TotalCost = user.TotalCost,
+                UserName = user.UserName
+            };
+        }
+
+        public UserDTO ChangeUserToUserDTO(User user)
+        {
+            return new UserDTO()
+            {
+                UserId = user.Id,
+                Address = user.Address,
+                AddressId = user.AddressId,
+                Email = user.Email,
+                TotalCost = user.TotalCost,
+                UserName = user.UserName
+            };
+         }
+
+        public async Task<UserDTO> ChangeUserToUserDTOAsync(User user)
+        {
+            return new UserDTO()
+            {
+                UserId = user.Id,
+                Address = user.Address,
+                AddressId = user.AddressId,
+                Email = user.Email,
+                TotalCost = user.TotalCost,
+                UserName = user.UserName
+            };
+        }
+
         public IEnumerable<CartDTO> GetAllByUserId(string userId)
         {
             var all = userDashBoardRepository.GetAll(userId);
@@ -117,6 +170,16 @@ namespace CactusApplication.Service
 
         }
 
+        public UserDTO GetUserDTOByUserId(string Id)
+        {
+            return ChangeUserToUserDTO(userDashBoardRepository.GetUserById(Id));
+        }
+
+        public async Task<UserDTO> GetUserDTOByUserIdAsync(string Id)
+        {
+            return await ChangeUserToUserDTOAsync(await userDashBoardRepository.GetUserByIdAsync(Id));
+        }
+
         public bool RemoveItem(int Id)
         {
             return userDashBoardRepository.DeleteItemById(Id);
@@ -125,6 +188,16 @@ namespace CactusApplication.Service
         public async Task<bool> RemoveItemAsync(int Id)
         {
             return await userDashBoardRepository.DeleteItemByIdAsync(Id);
+        }
+
+        public bool UpdateUser(UserDTO userDTO)
+        {
+            return userDashBoardRepository.UpdateUser(ChangeUserDTOToUser(userDTO));
+        }
+
+        public async Task<bool> UpdateUserAsync(UserDTO userDTO)
+        {
+            return await userDashBoardRepository.UpdateUserAsync(await ChangeUserDTOToUserAsync(userDTO));
         }
     }
 }

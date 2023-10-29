@@ -12,11 +12,14 @@ namespace CactusApplication.Repository
 {
     public class UserDashBoardRepository : IUserDashBoardRepository
     {
-        private readonly ApplicationDbContext context;
 
-        public UserDashBoardRepository(ApplicationDbContext context)
+        private readonly ApplicationDbContext context;
+        private readonly IAddressRepository addressRepository;
+
+        public UserDashBoardRepository(ApplicationDbContext context , IAddressRepository addressRepository)
         {
             this.context = context;
+            this.addressRepository = addressRepository;
         }
 
         public bool DeleteItemById(int itemId)
@@ -127,6 +130,25 @@ namespace CactusApplication.Repository
         {
             context.UsersCarts.Update(userCart);
             return SaveAsync();
+        }
+
+        public bool UpdateUser(User user)
+        {
+            context.Users.Update(user);
+            var address = addressRepository.GetAddressById(user.AddressId);
+            address = user.Address;
+            addressRepository.Update(address);
+            return Save();
+        }
+
+        public async Task<bool> UpdateUserAsync(User user)
+        {
+            context.Users.Update(user);
+            var address = await addressRepository.GetAddressByIdAsync(user.AddressId);
+            address = user.Address;
+            await addressRepository.UpdateAsync(address);
+
+            return await SaveAsync();
         }
     }
 }

@@ -16,6 +16,8 @@ namespace CactusDomain.IRepository
         Task<bool> UpdateAsync(Address address);
         bool Save();
         Task<bool> SaveAsync();
-
+        Address GetAddressById(int Id);
+        Task<Address> GetAddressByIdAsync(int Id);
     }
 }
+

@@ -1,0 +1,42 @@
+﻿@using CactusApplication.DTOs;
+@model UserDTO
+@{
+    ViewData["Title"] = " Edit Profile";
+}
+<br />
+<br />
+<br />
+<form method="post" asp-action="EditProfile">
+    <div class="form-group">
+        <label asp-for="UserName"> User Name </label>
+        <input asp-for="UserName" type="text" value="@Model.UserName" class="form-control" placeholder="UserName">
+        <span asp-validation-for="UserName" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="FullAddress"> FullAddress</label>
+        <input asp-for="FullAddress" type="text" value="@Model.FullAddress" class="form-control" placeholder="FullAddress">
+        <span asp-validation-for="FullAddress" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Postal">Postal</label>
+        <input asp-for="Postal" type="text" value="@Model.Postal" class="form-control" placeholder="Postal">
+        <span asp-validation-for="Postal" class="text-danger"></span>
+
+    </div>
+
+
+    <input type="hidden" value="@Model.UserId" asp-for="UserId" />
+    <input type="hidden" value="@Model.AddressId"  asp-for="AddressId" />
+    <input type="hidden" value="@Model.Email" asp-for="Email" />
+    <input type="hidden" value="@Model.TotalCost" asp-for="TotalCost" />
+
+
+
+    <br /><br />
+
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

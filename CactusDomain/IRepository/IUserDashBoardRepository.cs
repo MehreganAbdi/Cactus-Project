@@ -4,6 +4,7 @@ namespace CactusDomain.IRepository
 {
     public interface IUserDashBoardRepository
     {
+        
         IEnumerable<UserCart> GetAll(string userId);
         Task<IEnumerable<UserCart>> GetAllAsync(string userId);
         Task<User> GetUserByIdAsync(string userId);
@@ -24,5 +25,7 @@ namespace CactusDomain.IRepository
         Task<bool> IsInFavoritesAsync(string userId, int ProductId);
         int PurchaseCount(string userId, int ProductId);
         bool IsInFavorites(string userId, int ProductId);
+        bool UpdateUser(User user);
+        Task<bool> UpdateUserAsync(User user);
     }
 }
