@@ -162,5 +162,15 @@ namespace CactusApplication.Service
         {
             return await userDashBoardRepository.DeleteItemByIdAsync(Id);
         }
+
+        public bool UpdateUser(UserDTO userDTO)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateUserAsync(UserDTO userDTO)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
