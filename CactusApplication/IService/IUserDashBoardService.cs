@@ -24,6 +24,8 @@ namespace CactusApplication.IService
         Task<UserDTO> ChangeUserToUserDTOAsync(User user);
         bool UpdateUser(UserDTO userDTO);
         Task<bool> UpdateUserAsync(UserDTO userDTO);
+        User ChangeUserDTOToUser(UserDTO userDTO);
+        Task<User> ChangeUserDTOToUserAsync(UserDTO userDTO);
 
     }
 }

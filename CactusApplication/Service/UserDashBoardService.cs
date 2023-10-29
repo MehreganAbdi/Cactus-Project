@@ -2,6 +2,7 @@
 using CactusApplication.IService;
 using CactusDomain.IRepository;
 using CactusDomain.Models;
+using Microsoft.AspNet.Identity;
 
 
 namespace CactusApplication.Service
@@ -88,6 +89,32 @@ namespace CactusApplication.Service
 
         }
 
+        public User ChangeUserDTOToUser(UserDTO user)
+        {
+            return new User()
+            {
+                Id = user.UserId,
+                Address = user.Address,
+                AddressId = user.AddressId,
+                Email = user.Email,
+                TotalCost = user.TotalCost,
+                UserName = user.UserName
+            };
+        }
+
+        public async Task<User> ChangeUserDTOToUserAsync(UserDTO user)
+        {
+            return new User()
+            {
+                Id = user.UserId,
+                Address = user.Address,
+                AddressId = user.AddressId,
+                Email = user.Email,
+                TotalCost = user.TotalCost,
+                UserName = user.UserName
+            };
+        }
+
         public UserDTO ChangeUserToUserDTO(User user)
         {
             return new UserDTO()
@@ -165,12 +192,12 @@ namespace CactusApplication.Service
 
         public bool UpdateUser(UserDTO userDTO)
         {
-            throw new NotImplementedException();
+            return userDashBoardRepository.UpdateUser(ChangeUserDTOToUser(userDTO));
         }
 
-        public Task<bool> UpdateUserAsync(UserDTO userDTO)
+        public async Task<bool> UpdateUserAsync(UserDTO userDTO)
         {
-            throw new NotImplementedException();
+            return await userDashBoardRepository.UpdateUserAsync(await ChangeUserDTOToUserAsync(userDTO));
         }
     }
 }

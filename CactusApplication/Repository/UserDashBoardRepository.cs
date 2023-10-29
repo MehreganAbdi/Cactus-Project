@@ -128,5 +128,17 @@ namespace CactusApplication.Repository
             context.UsersCarts.Update(userCart);
             return SaveAsync();
         }
+
+        public bool UpdateUser(User user)
+        {
+            context.Users.Update(user);
+            return Save();
+        }
+
+        public async Task<bool> UpdateUserAsync(User user)
+        {
+            context.Users.Update(user);
+            return await SaveAsync();
+        }
     }
 }
