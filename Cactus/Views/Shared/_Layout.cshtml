@@ -35,13 +35,16 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark btn-outline-light" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                                <a class="nav-link text-dark " asp-area="" asp-controller="Account" asp-action="Login">Login</a>
                             </li>
                         }
                         else {
-                        <li class="nav-item">
-                            <a class="btn btn-danger nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="btn  nav-link text-dark" asp-area="" asp-controller="UserDashBoard" asp-action="Index">DashBoard</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="btn nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
                         }
 
 

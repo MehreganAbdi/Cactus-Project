@@ -44,7 +44,7 @@
                 }
                 @if (!User.IsInRole("admin"))
                 {
-                    <a type="button" class="btn btn-sm btn-primary" asp-controller="UserAction" asp-action="AddToCart" asp-route-id="@Model.ProductId">Buy</a>
+                    <a type="button" class="btn btn-sm btn-primary" asp-controller="UserAction" asp-action="AddToCart" asp-route-id="@Model.ProductId">Add To Cart</a>
 
                 }
 

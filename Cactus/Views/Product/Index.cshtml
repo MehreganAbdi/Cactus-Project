@@ -4,9 +4,12 @@
     ViewData["Title"] = "Sneakers";
 }
 
+@if (User.IsInRole("admin"))
+{
+    <a class="btn btn-primary" asp-controller="Product" asp-action="Create">Add Product</a>
+}
 
 
-<a class="btn primary-btn" asp-controller="Product" asp-action="Create">Add Product</a>
 
 <div class="container">
     @if (TempData["Error"] != null)
@@ -60,9 +63,13 @@
                                 <div class="btn-group">
 
                                     <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId">Detail</a>
+                                    
+                                    @if (User.IsInRole("admin"))
+                                    {
+                                        <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Product" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
+                                        <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Product" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                                    }
 
-                                    <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Product" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
-                                    <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Product" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
 
                                 </div>
 
