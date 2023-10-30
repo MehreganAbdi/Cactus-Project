@@ -19,6 +19,8 @@ namespace CactusDomain.IRepository
         Task<User> GetUserByUserIdAsync(string userId);
         IEnumerable<Product> GetSoldOutProducts();
         Task<IEnumerable<Product>> GetSoldOutProductsAsync();
+        Product GetProductById(int productId);
+        Task<Product> GetProductByIdAsync(int productId);
 
     }
 }

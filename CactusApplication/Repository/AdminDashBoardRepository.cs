@@ -40,6 +40,17 @@ namespace CactusApplication.Repository
             return await context.Users.ToListAsync();
         }
 
+        public Product GetProductById(int productId)
+        {
+            return context.Products.FirstOrDefault(p => p.ProductId == productId);
+        }
+
+        public async Task<Product> GetProductByIdAsync(int productId)
+        {
+            return await context.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
+        }
+
+
         public IEnumerable<Product> GetSoldOutProducts()
         {
             return context.Products.Where(p => p.Count < 1).ToList();

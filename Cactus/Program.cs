@@ -34,7 +34,7 @@ namespace Cactus
             builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<IUserDashBoardRepository, UserDashBoardRepository>();
-
+            builder.Services.AddScoped<IAdminDashBoardRepository, AdminDashBoardRepository>();
 
 
 
@@ -47,7 +47,7 @@ namespace Cactus
             builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<IPhotoService, PhotoService>();
             builder.Services.AddScoped<IUserDashBoardService , UserDashBoardService>();
-
+            builder.Services.AddScoped<IAdminDashBoardService, AdminDashBoardService>();
 
             #endregion
 
@@ -57,12 +57,12 @@ namespace Cactus
 
             #region Configs
 
+
+            //Cloudinay
             builder.Services.Configure<CloudinarySetup>(builder.Configuration.GetSection("CloudinarySetup"));
             
-            #endregion
 
-
-
+            //Data-Base
             builder.Services.AddDbContext<ApplicationDbContext>(
                 options =>
                 {
@@ -70,6 +70,7 @@ namespace Cactus
                 });
 
 
+            //Identity
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddMemoryCache();
@@ -77,6 +78,12 @@ namespace Cactus
             builder.Services.AddSession();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+
+            #endregion
+
+
+
 
 
             var app = builder.Build();

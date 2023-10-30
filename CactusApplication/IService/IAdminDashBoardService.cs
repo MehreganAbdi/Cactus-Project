@@ -20,6 +20,11 @@ namespace CactusApplication.IService
         User ChangeUserDTOToUser(UserDTO userDTO);
         Task<User> ChangeUserDTOToUserAsync(UserDTO userDTO);
 
+        CartDTO ChangeUserCartToCartDTO(UserCart userCart);
+        Task<CartDTO> ChangeUserCartToCartDTOAsync(UserCart userCart);
+        UserCart ChangeCartDTOToUserCart(CartDTO cartDTO);
+        Task<UserCart> ChangeCartDTOToUserCartAsync(CartDTO cartDTO);
+
         IEnumerable<UserDTO> GetAllUsers();
         Task<IEnumerable<UserDTO>> GetAllUsersAsync();
         IEnumerable<ProductDTO> GetAllProducts();
