@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CactusDomain.IRepository
 {
-    public interface IAdminDashBoard
+    public interface IAdminDashBoardRepository
     {
         IEnumerable<User> GetAllUsers();
         Task<IEnumerable<User>> GetAllUsersAsync();
