@@ -251,39 +251,77 @@ namespace CactusApplication.Service
             return allCartDTos;
         }
 
-        public Task<IEnumerable<CartDTO>> GetAllUserCartsByUserIdAsync(string userId)
+        public async Task<IEnumerable<CartDTO>> GetAllUserCartsByUserIdAsync(string userId)
         {
-            throw new NotImplementedException();
+            var allUserCarts = await adminDashBoardRepository.GetUserCartsByUserIdAsync(userId);
+            var allCartDTos = new List<CartDTO>();
+            foreach (var cart in allUserCarts)
+            {
+                allCartDTos.Add(await ChangeUserCartToCartDTOAsync(cart));
+            }
+            return allCartDTos;
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            throw new NotImplementedException();
+            var users = adminDashBoardRepository.GetAllUsers();
+            var usersDTO = new List<UserDTO>();
+            foreach (var user in users)
+            {
+                usersDTO.Add(ChangeUserToUserDTO(user));
+            }
+
+            return usersDTO;
         }
 
-        public Task<IEnumerable<UserDTO>> GetAllUsersAsync()
+
+        public async Task<IEnumerable<UserDTO>> GetAllUsersAsync()
         {
-            throw new NotImplementedException();
+            var users = await adminDashBoardRepository.GetAllUsersAsync();
+            var usersDTO = new List<UserDTO>();
+            foreach (var user in users)
+            {
+                usersDTO.Add(await ChangeUserToUserDTOAsync(user));
+            }
+
+            return usersDTO;
         }
 
         public IEnumerable<ProductDTO> GetSoldOutProducts()
         {
-            throw new NotImplementedException();
+            var soldOutProducts = adminDashBoardRepository.GetSoldOutProducts();
+            var soldOutProductsDTO = new List<ProductDTO>();
+
+            foreach (var product in soldOutProducts)
+            {
+                soldOutProductsDTO.Add(ChangeProductToProductDTO(product));
+            }
+
+            return soldOutProductsDTO;
         }
 
-        public Task<IEnumerable<ProductDTO>> GetSoldOutProductsAsync()
+        public async Task<IEnumerable<ProductDTO>> GetSoldOutProductsAsync()
         {
-            throw new NotImplementedException();
+            var soldOutProducts = await adminDashBoardRepository.GetSoldOutProductsAsync();
+            var soldOutProductsDTO = new List<ProductDTO>();
+
+            foreach (var product in soldOutProducts)
+            {
+                soldOutProductsDTO.Add(await ChangeProductToProductDTOAsync(product));
+            }
+
+            return soldOutProductsDTO;
         }
 
         public UserDTO GetUserById(string userId)
         {
-            throw new NotImplementedException();
+            return ChangeUserToUserDTO(adminDashBoardRepository.GetUserByUserId(userId));
         }
 
-        public Task<UserDTO> GetUserByIdAsync(string userId)
+        public async Task<UserDTO> GetUserByIdAsync(string userId)
         {
-            throw new NotImplementedException();
+            return await ChangeUserToUserDTOAsync(await adminDashBoardRepository.GetUserByUserIdAsync(userId));
         }
     }
 }
+
