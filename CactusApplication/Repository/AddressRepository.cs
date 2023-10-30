@@ -32,13 +32,13 @@ namespace CactusApplication.Repository
 
         public Address GetAddressById(int Id)
         {
-            return _context.Addresses.FirstOrDefault(a => a.AddressId == Id);
+            return _context.Addresses.AsNoTracking().FirstOrDefault(a => a.AddressId == Id);
         }
 
 
         public async Task<Address> GetAddressByIdAsync(int Id)
         {
-            return await _context.Addresses.FirstOrDefaultAsync(a => a.AddressId == Id);
+            return await _context.Addresses.AsNoTracking().FirstOrDefaultAsync(a => a.AddressId == Id);
         }
 
         public bool Remove(Address address)
@@ -59,14 +59,17 @@ namespace CactusApplication.Repository
 
         public bool Update(Address address)
         {
-            _context.Addresses.Update(address);
+            var addresss = GetAddressById(address.AddressId);
+            addresss.FullAddress = address.FullAddress;
+            addresss.PostalCode = address.PostalCode;
             return Save();
-
         }
 
         public async Task<bool> UpdateAsync(Address address)
         {
-            _context.Addresses.Update(address);
+            var addresss = await GetAddressByIdAsync(address.AddressId);
+            addresss.FullAddress = address.FullAddress;
+            addresss.PostalCode = address.PostalCode;
             return await SaveAsync();
         }
     }

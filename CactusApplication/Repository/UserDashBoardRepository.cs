@@ -80,12 +80,12 @@ namespace CactusApplication.Repository
 
         public User GetUserById(string userId)
         {
-            return context.Users.FirstOrDefault(u => u.Id == userId);
+            return context.Users.Include(u => u.Address).AsNoTracking().FirstOrDefault(u => u.Id == userId);
         }
 
         public Task<User> GetUserByIdAsync(string userId)
         {
-            return context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            return context.Users.Include(u => u.Address).AsNoTracking().FirstOrDefaultAsync(u => u.Id == userId);
         }
 
         public bool IsInFavorites(string userId, int ProductId)
@@ -134,19 +134,19 @@ namespace CactusApplication.Repository
 
         public bool UpdateUser(User user)
         {
+            addressRepository.Update(user.Address);
             context.Users.Update(user);
-            var address = addressRepository.GetAddressById(user.AddressId);
-            address = user.Address;
-            addressRepository.Update(address);
             return Save();
         }
+            
 
         public async Task<bool> UpdateUserAsync(User user)
         {
-            context.Users.Update(user);
-            var address = await addressRepository.GetAddressByIdAsync(user.AddressId);
-            address = user.Address;
-            await addressRepository.UpdateAsync(address);
+            await addressRepository.UpdateAsync(user.Address);
+
+            var userr = await GetUserByIdAsync(user.Id);
+
+            userr.Address = user.Address;
 
             return await SaveAsync();
         }

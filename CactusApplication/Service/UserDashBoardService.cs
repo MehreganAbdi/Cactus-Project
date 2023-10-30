@@ -133,11 +133,18 @@ namespace CactusApplication.Service
             return new UserDTO()
             {
                 UserId = user.Id,
-                Address = user.Address,
+                Address = new Address()
+                {
+                    AddressId = user.AddressId,
+                    FullAddress = user.Address.FullAddress,
+                    PostalCode = user.Address.PostalCode
+                },
                 AddressId = user.AddressId,
                 Email = user.Email,
                 TotalCost = user.TotalCost,
-                UserName = user.UserName
+                UserName = user.UserName,
+                FullAddress = user.Address.FullAddress,
+                Postal = user.Address.PostalCode
             };
         }
 
