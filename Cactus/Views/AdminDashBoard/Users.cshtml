@@ -5,3 +5,48 @@
     ViewData["Title"] = "All Users";
 }
 
+<br />
+@using (Html.BeginForm("OffToAllProducts", "AdminDashBoard", FormMethod.Get))
+{
+    <label>Off To All Products </label>
+    @Html.TextBox("OffPercentagestring")
+
+    <input type="submit" class="btn-primary" />
+
+}
+
+ 
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Full Address</th>
+            <th scope="col">PostalCode</th> 
+            <th scope="col"> User Management </th>
+
+        </tr>
+    </thead>
+    @{
+        var i = 1;
+
+    }
+    @foreach (var user in Model)
+    {
+        <tbody>
+            <tr>
+                <th scope="row">@i</th>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.FullAddress</td>
+                <td>@user.Postal</td>
+                <td><a class="btn btn-primary" asp-action="UserManagement" asp-controller="AdminDashBoard" asp-route-id="@user.UserId">User Management</a></td>
+
+            </tr>
+        </tbody>
+        i++;
+    }
+
+
+</table>

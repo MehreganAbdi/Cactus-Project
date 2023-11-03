@@ -49,6 +49,7 @@ namespace Cactus.Controllers
         {
             if (!User.IsInRole("admin"))
             {
+                
                 return RedirectToAction("Index", "Product");
             }
             var soldOutProducts = await adminDashBoardService.GetSoldOutProductsAsync();

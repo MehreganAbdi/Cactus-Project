@@ -5,17 +5,9 @@
     ViewData["Title"] = "Sold Out Products";
 }
 <br />
-@using (Html.BeginForm("OffToAllProducts", "AdminDashBoard", FormMethod.Get))
-{
-    <label>Off To All Products </label>
-    @Html.TextBox("OffPercentagestring")
-
-    <input type="submit" class="btn-primary" />
-
-}
+ 
 
 
-<a class="btn btn-primary" asp-controller="Event" asp-action="Index">Events</a>
 <table class="table">
     <thead>
         <tr>
