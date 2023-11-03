@@ -4,3 +4,51 @@
 @{
     ViewData["Title"] = "Sold Out Products";
 }
+<br />
+@using (Html.BeginForm("OffToAllProducts", "AdminDashBoard", FormMethod.Get))
+{
+    <label>Off To All Products </label>
+    @Html.TextBox("OffPercentagestring")
+
+    <input type="submit" class="btn-primary" />
+
+}
+
+
+<a class="btn btn-primary" asp-controller="Event" asp-action="Index">Events</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Brand </th>
+            <th scope="col">Count</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Additional Info</th>
+            <th scope="col"> Edit </th>
+
+        </tr>
+    </thead>
+    @{
+        var i = 1;
+
+    }
+    @foreach (var product in Model)
+    {
+        <tbody>
+            <tr>
+                <th scope="row">@i</th>
+                <td>@product.ProductName</td>
+                <td>@product.Brand.ToString()</td>
+                <td>@product.Count : Out Of Stock</td>
+                <td>@product.Cost</td>
+                <td>@product.AdditionalInfo</td>
+                <td><a class="btn btn-primary" asp-action="Edit" asp-controller="Product" asp-route-id="@product.ProductId">Edit</a></td>
+
+            </tr>
+        </tbody>
+        i++;
+    }
+
+
+</table>
