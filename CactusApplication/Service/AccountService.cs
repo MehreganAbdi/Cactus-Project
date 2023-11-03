@@ -87,8 +87,8 @@ namespace CactusApplication.Service
             }
             var newUser = new User()
             {
-                Email = registerDTO.EmailAddress
-                ,
+                Email = registerDTO.EmailAddress,
+                PhoneNumber = registerDTO.PhoneNumber,
                 UserName = registerDTO.UserName.Replace(" ", ""),
                 Address = new Address()
                 {

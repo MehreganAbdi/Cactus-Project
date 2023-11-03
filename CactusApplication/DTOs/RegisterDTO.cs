@@ -25,5 +25,8 @@ namespace CactusApplication.DTOs
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Passwords Are Different")]
         public string ConfirmPassword { get; set; }
+        
+        [Required]
+        public string PhoneNumber { get; set; }
     }
 }

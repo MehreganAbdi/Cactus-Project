@@ -98,7 +98,8 @@ namespace CactusApplication.Service
                 AddressId = user.AddressId,
                 Email = user.Email,
                 TotalCost = user.TotalCost,
-                UserName = user.UserName
+                UserName = user.UserName,
+                PhoneNumber = user.PhoneNumber
             };
         }
 
@@ -111,7 +112,8 @@ namespace CactusApplication.Service
                 AddressId = user.AddressId,
                 Email = user.Email,
                 TotalCost = user.TotalCost,
-                UserName = user.UserName
+                UserName = user.UserName,
+                PhoneNumber = user.PhoneNumber
             };
         }
 
@@ -124,7 +126,8 @@ namespace CactusApplication.Service
                 AddressId = user.AddressId,
                 Email = user.Email,
                 TotalCost = user.TotalCost,
-                UserName = user.UserName
+                UserName = user.UserName,
+                PhoneNumber = user.PhoneNumber
             };
          }
 
@@ -144,7 +147,8 @@ namespace CactusApplication.Service
                 TotalCost = user.TotalCost,
                 UserName = user.UserName,
                 FullAddress = user.Address.FullAddress,
-                Postal = user.Address.PostalCode
+                Postal = user.Address.PostalCode,
+                PhoneNumber = user.PhoneNumber
             };
         }
 
