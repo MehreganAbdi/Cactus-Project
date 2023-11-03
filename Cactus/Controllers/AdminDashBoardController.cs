@@ -23,7 +23,7 @@ namespace Cactus.Controllers
 
             if (searching != null)
             {
-                allProducts = allProducts.Where(p => p.ProductName.Contains(searching) ||
+                allProducts = allProducts.Where(p =>  p.ProductName.Contains(searching) ||
                                                       p.AdditionalInfo.Contains(searching) ||
                                                       p.Brand.ToString().Contains(searching) ||
                                                       p.Size.Contains(searching)).ToList();
