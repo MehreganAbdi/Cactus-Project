@@ -14,6 +14,12 @@
 
     </div>
     <div class="form-group">
+        <label asp-for="PhoneNumber"> PhoneNumber</label>
+        <input asp-for="PhoneNumber" type="text" value="@Model.PhoneNumber" class="form-control" placeholder="PhoneNumber">
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
         <label asp-for="FullAddress"> FullAddress</label>
         <input asp-for="FullAddress" type="text" value="@Model.FullAddress" class="form-control" placeholder="FullAddress">
         <span asp-validation-for="FullAddress" class="text-danger"></span>
