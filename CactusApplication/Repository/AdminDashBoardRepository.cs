@@ -94,6 +94,17 @@ namespace CactusApplication.Repository
             return await context.UsersCarts.Where(uc => uc.UserId == userId).ToListAsync();
         }
 
+        public bool IsUserBan(User user)
+        {
+            return context.BannedUsers.Any(u => u==user);
+        }
+
+        public async Task<bool> IsUserBanAsync(User user)
+        {
+            return await context.BannedUsers.AnyAsync(u => u == user);
+        }
+
+
         public bool Save()
         {
             return context.SaveChanges() > 0;

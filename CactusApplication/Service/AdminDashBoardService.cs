@@ -334,6 +334,17 @@ namespace CactusApplication.Service
             return await ChangeUserToUserDTOAsync(await adminDashBoardRepository.GetUserByUserIdAsync(userId));
         }
 
+        public bool IsUSerBan(string userId)
+        {
+            return adminDashBoardRepository.IsUserBan(userDashBoardRepository.GetUserById(userId));
+        }
+
+        public async Task<bool> IsUSerBanAsync(string userId)
+        {
+            return await adminDashBoardRepository.IsUserBanAsync(await userDashBoardRepository.GetUserByIdAsync(userId));
+        }
+
+
         public bool UnBanUser(string userId)
         {
             return adminDashBoardRepository.UnBanUser(userDashBoardRepository.GetUserById(userId));
@@ -346,4 +357,3 @@ namespace CactusApplication.Service
         }
     }
 }
-
