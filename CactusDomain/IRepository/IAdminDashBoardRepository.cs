@@ -27,6 +27,9 @@ namespace CactusDomain.IRepository
         Task<bool> UnBanUserAsync(User user);
         bool Save();
         Task<bool> SaveAsync();
+        bool IsUserBan(User user);
+        Task<bool> IsUserBanAsync(User user);
+
     }
 }
 
