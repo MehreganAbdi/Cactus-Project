@@ -19,5 +19,6 @@ namespace CactusDomain.Models
         public Brand Brand{ get; set; }
         public string? AdditionalInfo { get; set; }
         public string? Image{ get; set; }
+        public int? Off { get; set; }
     }
 }

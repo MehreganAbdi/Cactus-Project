@@ -104,6 +104,20 @@ namespace CactusApplication.Repository
             return await context.BannedUsers.AnyAsync(u => u == user);
         }
 
+        public bool OffToAll(int offPercentage)
+        {
+            foreach (var product in context.Products.ToList())
+            {
+                product.Off = offPercentage;
+            }
+            return Save();
+        }
+
+        public async Task<bool> OffToAllAsync(int offPercentage)
+        {
+            await context.Products.ForEachAsync(p => p.Off = offPercentage);
+            return await SaveAsync();
+        }
 
         public bool Save()
         {

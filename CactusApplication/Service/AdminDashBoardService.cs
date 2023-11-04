@@ -344,6 +344,16 @@ namespace CactusApplication.Service
             return await adminDashBoardRepository.IsUserBanAsync(await userDashBoardRepository.GetUserByIdAsync(userId));
         }
 
+        public bool OffToAll(int percentage)
+        {
+            return adminDashBoardRepository.OffToAll(percentage);
+        }
+
+        public async Task<bool> OffToAllAsync(int percentage)
+        {
+            return await adminDashBoardRepository.OffToAllAsync(percentage);
+        }
+
 
         public bool UnBanUser(string userId)
         {

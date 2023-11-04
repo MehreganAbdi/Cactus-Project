@@ -29,6 +29,9 @@ namespace CactusDomain.IRepository
         Task<bool> SaveAsync();
         bool IsUserBan(User user);
         Task<bool> IsUserBanAsync(User user);
+        bool OffToAll(int offPercentage);
+        Task<bool> OffToAllAsync(int offPercentage);
+
 
     }
 }

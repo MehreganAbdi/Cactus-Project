@@ -41,6 +41,8 @@ namespace CactusApplication.IService
         Task<bool> UnBanUserAsync(string userId);
         bool IsUSerBan(string userId);
         Task<bool> IsUSerBanAsync(string userId);
+        bool OffToAll(int percentage);
+        Task<bool> OffToAllAsync( int percentage);
 
     }
 }
