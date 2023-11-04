@@ -19,6 +19,18 @@ namespace CactusApplication.Repository
             this.context = context;
         }
 
+        public bool BanUser(User user)
+        {
+            context.BannedUsers.Add(user);
+            return Save();
+        }
+
+        public async Task<bool> BanUserAsync(User user)
+        {
+            await context.BannedUsers.AddAsync(user);
+            return await SaveAsync();
+        }
+
         public IEnumerable<Product> GetAllProducts()
         {
             return context.Products.ToList();
@@ -80,6 +92,26 @@ namespace CactusApplication.Repository
         public async Task<IEnumerable<UserCart>> GetUserCartsByUserIdAsync(string userId)
         {
             return await context.UsersCarts.Where(uc => uc.UserId == userId).ToListAsync();
+        }
+
+        public bool Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> SaveAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UnBanUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UnBanUserAsync(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

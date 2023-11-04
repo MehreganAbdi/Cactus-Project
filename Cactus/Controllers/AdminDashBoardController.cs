@@ -55,5 +55,10 @@ namespace Cactus.Controllers
             var soldOutProducts = await adminDashBoardService.GetSoldOutProductsAsync();
             return View(soldOutProducts);
         }
+
+        public async Task<IActionResult> BanUser(string userId)
+        {
+            return View();
+        }
     }
 }

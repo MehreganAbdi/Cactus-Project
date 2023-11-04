@@ -8,11 +8,12 @@ namespace CactusDomain.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            
+
         }
-        public DbSet<Product> Products{ get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<User> BannedUsers { get; set; }
         public DbSet<UserCart> UsersCarts { get; set; }
         public DbSet<UserFavorite> UserFavorites { get; set; }
 
