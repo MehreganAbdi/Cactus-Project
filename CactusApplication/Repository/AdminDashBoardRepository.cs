@@ -96,22 +96,25 @@ namespace CactusApplication.Repository
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            return context.SaveChanges() > 0;
         }
 
-        public Task<bool> SaveAsync()
+        public async Task<bool> SaveAsync()
         {
-            throw new NotImplementedException();
+            return await context.SaveChangesAsync() > 0;
         }
+
 
         public bool UnBanUser(User user)
         {
-            throw new NotImplementedException();
+            context.BannedUsers.Remove(user);
+            return Save();
         }
 
-        public Task<bool> UnBanUserAsync(User user)
+        public async Task<bool> UnBanUserAsync(User user)
         {
-            throw new NotImplementedException();
+            context.BannedUsers.Remove(user);
+            return await SaveAsync();
         }
     }
 }
