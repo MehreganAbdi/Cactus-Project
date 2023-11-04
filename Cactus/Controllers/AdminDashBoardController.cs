@@ -23,7 +23,7 @@ namespace Cactus.Controllers
 
             if (searching != null)
             {
-                allProducts = allProducts.Where(p =>  p.ProductName.Contains(searching) ||
+                allProducts = allProducts.Where(p => p.ProductName.Contains(searching) ||
                                                       p.AdditionalInfo.Contains(searching) ||
                                                       p.Brand.ToString().Contains(searching) ||
                                                       p.Size.Contains(searching)).ToList();
@@ -49,11 +49,23 @@ namespace Cactus.Controllers
         {
             if (!User.IsInRole("admin"))
             {
-                
+
                 return RedirectToAction("Index", "Product");
             }
             var soldOutProducts = await adminDashBoardService.GetSoldOutProductsAsync();
             return View(soldOutProducts);
+        }
+
+        public async Task<IActionResult> BanUser(string userId)
+        {
+            if (await adminDashBoardService.GetUserByIdAsync(userId) == null)
+            {
+                TempData["Error"] = "This User Didn't Exist";
+            }
+ 
+
+            adminDashBoardService.BanUserAsync(userId);
+            return RedirectToAction("Users", "AdminDashBoard");
         }
     }
 }

@@ -35,6 +35,11 @@ namespace CactusApplication.IService
         Task<UserDTO> GetUserByIdAsync(string userId);
         IEnumerable<CartDTO> GetAllUserCartsByUserId(string userId);
         Task<IEnumerable<CartDTO>> GetAllUserCartsByUserIdAsync(string userId);
-
+        bool BanUser(string userId);
+        Task<bool> BanUserAsync(string userId);
+        bool UnBanUser(string userId);
+        Task<bool> UnBanUserAsync(string userId);
     }
 }
+
+

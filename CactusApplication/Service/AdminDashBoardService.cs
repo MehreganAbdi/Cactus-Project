@@ -25,6 +25,17 @@ namespace CactusApplication.Service
             this.userDashBoardRepository = userDashBoardRepository;
         }
 
+        public bool BanUser(string userId)
+        {
+            return adminDashBoardRepository.BanUser(userDashBoardRepository.GetUserById(userId));
+        }
+
+        public async Task<bool> BanUserAsync(string userId)
+        {
+            return await adminDashBoardRepository.BanUserAsync(await userDashBoardRepository.GetUserByIdAsync(userId));
+        }
+
+
         public UserCart ChangeCartDTOToUserCart(CartDTO cartDTO)
         {
             return new UserCart()
@@ -321,6 +332,17 @@ namespace CactusApplication.Service
         public async Task<UserDTO> GetUserByIdAsync(string userId)
         {
             return await ChangeUserToUserDTOAsync(await adminDashBoardRepository.GetUserByUserIdAsync(userId));
+        }
+
+        public bool UnBanUser(string userId)
+        {
+            return adminDashBoardRepository.UnBanUser(userDashBoardRepository.GetUserById(userId));
+
+        }
+
+        public async Task<bool> UnBanUserAsync(string userId)
+        {
+            return await adminDashBoardRepository.UnBanUserAsync(await userDashBoardRepository.GetUserByIdAsync(userId));
         }
     }
 }
